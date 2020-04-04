@@ -1,0 +1,44 @@
+
+.main-section {
+    background-color: blue;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.inning {
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.score {
+    background-color: red;
+    border: 2px solid blue;
+    padding: 4px;
+    text-align: center;
+}
+
+.runs {
+    background-color: red;
+    border: 1px solid white;
+    padding: 4px;
+    margin: 1px;
+    text-align: center;
+}
+
+.ticker {
+    border: 2px solid white;
+    background-color: lightblue;
+    margin-top: 10px;
+}
+
+.info {
+    color: white;
+}
+
+.team {
+    text-align: right;
+    color: white;
+}

@@ -39,10 +39,21 @@ CREATE TABLE game
 
 CREATE TABLE scores
 (
-    game_id INT NOT NULL,
-	inning INT NOT NULL, 
-	home_score INT NOT NULL,
-    guest_score INT NOT NULL,
+    game_id int AUTO_INCREMENT NOT NULL,
+	h1_score INT(2),
+    v1_score INT(2),
+    h2_score INT(2),
+    v2_score INT(2),
+    h3_score INT(2),
+    v3_score INT(2),
+    h4_score INT(2),
+    v4_score INT(2),
+    h5_score INT(2),
+    v5_score INT(2),
+    h6_score INT(2),
+    v6_score INT(2),
+    h_overtime INT(2),
+    v_overtime INT(2),
 	PRIMARY KEY
     (game_id)
 );
