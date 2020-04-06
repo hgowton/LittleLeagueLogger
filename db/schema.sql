@@ -4,7 +4,7 @@ CREATE DATABASE llldb;
 USE llldb;
 
 
-CREATE TABLE user
+CREATE TABLE Users
 (
     id int NOT NULL
     AUTO_INCREMENT,
@@ -20,7 +20,7 @@ CREATE TABLE user
 );
 
 
-CREATE TABLE game
+CREATE TABLE Games
 (
     game_id int NOT NULL
     AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE game
 );
 
 
-CREATE TABLE scores
+CREATE TABLE Scores
 (
     game_id int AUTO_INCREMENT NOT NULL,
 	h1_score INT(2),

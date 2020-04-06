@@ -17,20 +17,44 @@ $(document).ready(function () {
   });
 
   // The create button that submits the form data
-  $("#createAccount").on("submit", function (event) {
+  $("#createUserAccount").on("click", function (event) {
     event.preventDefault();
+
+    console.log("create account button");
 
     let emailInput = $("#createEmail").val().trim();
     let passwordInput = $("#createPassword").val().trim();
     let coachVal = document.getElementById("checkBox").checked;
-
+//
     var newUser = {
-      email: emailInput,
+      name: emailInput,
       password: passwordInput,
       coach: coachVal,
+      team: "what",
+      
+
     };
     console.log(newUser);
+    $.ajax("/api/posts", {
+      type:"POST",
+      data: newUser
+
+    }).then(
+      function () {
+        console.log("created new user");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+
+
+   
+
+
   });
+
+
+
 
   // Coach checkbox validation
   $("#checkBox").on("click", function (event) {
