@@ -66,11 +66,12 @@ $(document).ready(function () {
     day.setAttribute("style", "order:" + order);
     var newDay = counter;
     var newMonth = month;
+    newMonth++;
     if (counter < 10) {
       newDay = "0" + counter;
     }
     if (month < 10) {
-      newMonth = "0" + month;
+      newMonth = "0" + (month + 1);
     }
     day.setAttribute("id", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
@@ -173,4 +174,12 @@ $(document).ready(function () {
 
   // 		}
   // 		},false);
+
+  $.get("/api/games", function (data) {
+    // console.log(data);
+    data.forEach((element) => {
+      console.log(element.date);
+      $(`#${element.date}`).attr("class", "gameDay");
+    });
+  });
 });
