@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes) {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        //QUESTION -- not sure on the validations and unique pieces -- based on how we would like usernames to be formated
         unique: true,
         validate: {
             isEmail: true,
