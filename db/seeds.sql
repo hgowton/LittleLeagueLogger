@@ -1,23 +1,23 @@
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Heather@gmail.com", "23bbb23bbb", 0, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Matt@gmail.com", "23ccc23ccc", 0, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Bill@gmail.com", "23aaa23aaa", 1, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Aja@gmail.com", "23ddd23ddd", 0, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Guillermo@gmail.com", "aaa23aaa23", 0, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Andy@gmail.com", "bbb23bbb23", 0, "Jaguars");
 
-INSERT INTO user (email, password, coach, team)
+INSERT INTO user (name, password, coach, team)
 VALUES("Ross@gmail.com", "ccc23ccc23", 0, "Jaguars");
 
 INSERT INTO game (location, date, home_team, away_team)
