@@ -178,8 +178,27 @@ $(document).ready(function () {
   $.get("/api/games", function (data) {
     // console.log(data);
     data.forEach((element) => {
-      console.log(element.date);
-      $(`#${element.date}`).attr("class", "gameDay");
+      if (element.in_progress) {
+        $(`#${element.date}`).attr("class", "inProgress");
+        let dateNum = $(`#${element.date}`).text();
+        $(`#${element.date}`).empty();
+        var tag = $("<a>");
+        tag.attr("href", `game-score.html?id=${element.game_id}`);
+        tag.attr("class", "inProgress");
+        tag.text(dateNum);
+        $(`#${element.date}`).append(tag);
+      } else if (element.completed) {
+        $(`#${element.date}`).attr("class", "gameDay");
+        let dateNum = $(`#${element.date}`).text();
+        $(`#${element.date}`).empty();
+        var tag = $("<a>");
+        tag.attr("href", `game-score.html?id=${element.game_id}`);
+        tag.attr("class", "gameDay");
+        tag.text(dateNum);
+        $(`#${element.date}`).append(tag);
+      } else {
+        $(`#${element.date}`).attr("class", "incomplete");
+      }
     });
   });
 });

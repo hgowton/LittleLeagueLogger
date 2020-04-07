@@ -8,6 +8,16 @@ module.exports = function (sequelize, DataTypes) {
         autoIncrement: true,
         primaryKey: true,
       },
+      completed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      in_progress: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       location: {
         type: DataTypes.STRING,
         allowNull: false,
