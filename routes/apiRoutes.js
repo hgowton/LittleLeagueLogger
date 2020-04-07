@@ -3,17 +3,17 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all examples
   app.post("/api/user", function(req, res) {
-    console.log(req.body.email);
+    console.log("this is req.body" + req.body.name);
     //db.user needs to equal "user" in defining sequelize var
     //if it was "User" then it would be db.User
-    db.user.findOne({ where: { name: req.body.email } }).then(function(dbuser) {
-      res.json(dbuser);
-      console.log("this is from apiroutes.js " + dbuser);
+    db.User.findOne({ where: { name: req.body.name } }).then(function(dbUser) {
+      res.json(dbUser);
+      // console.log("this is from apiroutes.js " + dbUser);
     });
   });
 
   app.post("/api/newUser", function(req, res) {
-    db.user.create(req.body);
+    db.User.create(req.body);
     res.end();
   });
 
