@@ -8,6 +8,15 @@ html {
   font-family: "Times New Roman", Times, serif;
 }
 
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .calendar,
 section {
   max-width: 50rem;
@@ -16,9 +25,15 @@ section {
 .day {
   width: 1.5em;
   height: 1.5em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.day:nth-of-type(7n+1) {
+.day:nth-of-type(7n + 1) {
   color: #f09;
 }
 
@@ -27,11 +42,48 @@ section {
   background: #f09;
   border-radius: 50%;
 }
+.gameDay {
+  color: white;
+  background: rgb(0, 217, 255);
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.incomplete {
+  color: white;
+  background: rgb(255, 157, 0);
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.inProgress {
+  color: white;
+  background: rgb(0, 255, 0);
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
 
 .month {
   width: calc(1.5em * 7);
   padding: 1em;
-  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 h4 {
@@ -44,8 +96,8 @@ h1#year {
   font-size: 2em;
   height: 29px;
   font-weight: normal;
-  padding: 1em 1em .5em 1em;
-  margin-bottom: .5em;
+  padding: 1em 1em 0.5em 1em;
+  margin-bottom: 0.5em;
   border-bottom: 5px double #d9d9d9;
 }
 
@@ -62,7 +114,6 @@ h1#year {
 .no-flexbox h1 {
   width: 4em;
 }
-
 
 /* FLEXBOX styles*/
 
@@ -101,7 +152,6 @@ section {
   justify-content: center;
 }
 
-
 /*for a Spanish like calendar  
   .month .day:nth-of-type(1){order:7!important;}
   .month .day:nth-of-type(8){order:-1!important;}
@@ -121,12 +171,12 @@ script {
   margin-top: -10.89em;
   box-shadow: 0px 0px 5px 1px #ccc;
   transform: scale(2, 2);
-  background: rgba(255, 255, 255, .9);
-  animation: redimensionar .5s cubic-bezier(.86, 0, .07, 1);
+  background: rgba(255, 255, 255, 0.9);
+  animation: redimensionar 0.5s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .month.cloneMonth {
-  display: flex
+  display: flex;
 }
 
 .month.cloneMonth:after {
@@ -139,20 +189,20 @@ script {
 
 .cloneCont.trans {
   transform: translateY(1000px);
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, 0.9);
   opacity: 0;
-  animation: trasladar .5s cubic-bezier(.86, 0, .07, 1);
+  animation: trasladar 0.5s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 @keyframes redimensionar {
   0% {
     transform: scale(1, 1);
-    background: rgba(255, 255, 255, .9);
+    background: rgba(255, 255, 255, 0.9);
     opacity: 0;
   }
   100% {
     transform: scale(2, 2);
-    background: rgba(255, 255, 255, .9);
+    background: rgba(255, 255, 255, 0.9);
     opacity: 1;
   }
 }
