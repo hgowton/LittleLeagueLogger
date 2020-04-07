@@ -3,22 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <!--CSS style sheets-->
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/game_score.css" />
     <title>Little League Logger | Game View</title>
-
   </head>
 <body>
     <!--User 1 view of game statistics-->
     <div class="container main-section">
-        <div class="row">
-            <div class="col-md-10 info" id="date">Date and Time</div>
-            <div class="col-md-2"><img id="logo" src="./img/logo.png" alt="little league logger logo" /></div>
 
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12 info" id="date">Date and Time</div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-6 info" id="h_name">Home Team:</div>
@@ -29,46 +34,34 @@
             <div class="col-md-6 info" id="address">Address:</div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-1 inning">1</div>
-                <div class="col-md-1 inning">2</div>
-                <div class="col-md-1 inning">3</div>
-                <div class="col-md-1 inning">4</div>
-                <div class="col-md-1 inning">5</div>
-                <div class="col-md-1 inning">6</div>
-                <div class="col-md-2 inning">RUNS</div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-2 team">HOME</div>
-                <div class="col-md-1 score" id="h1_score">1</div>
-                <div class="col-md-1 score" id="h2_score">2</div>
-                <div class="col-md-1 score" id="h3_score">3</div>
-                <div class="col-md-1 score" id="h4_score"></div>
-                <div class="col-md-1 score" id="h5_score"></div>
-                <div class="col-md-1 score" id="h6_score"></div>
-                <div class="col-md-2 runs" id="h_runs"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-2 team">VISTING</div>
-                <div class="col-md-1 score" id="v1_score">1</div>
-                <div class="col-md-1 score" id="v2_score">2</div>
-                <div class="col-md-1 score" id="v3_score">3</div>
-                <div class="col-md-1 score" id="v4_score"></div>
-                <div class="col-md-1 score" id="v5_score"></div>
-                <div class="col-md-1 score" id="v6_score"></div>
-                <div class="col-md-2 runs" id="v_runs"></div>
-            </div>
+        <div class="row">
+          <div class="col-md-2 team">HOME</div>
+          <div class="col-md-1 score" id="h1_score">1</div>
+          <div class="col-md-1 score" id="h2_score">2</div>
+          <div class="col-md-1 score" id="h3_score">3</div>
+          <div class="col-md-1 score" id="h4_score"></div>
+          <div class="col-md-1 score" id="h5_score"></div>
+          <div class="col-md-1 score" id="h6_score"></div>
+          <div class="col-md-2 runs" id="h_runs"></div>
         </div>
 
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 ticker">Ticker</div>
-            <div class="col-md-1"></div>
+          <div class="col-md-2 team">VISTING</div>
+          <div class="col-md-1 score" id="v1_score">1</div>
+          <div class="col-md-1 score" id="v2_score">2</div>
+          <div class="col-md-1 score" id="v3_score">3</div>
+          <div class="col-md-1 score" id="v4_score"></div>
+          <div class="col-md-1 score" id="v5_score"></div>
+          <div class="col-md-1 score" id="v6_score"></div>
+          <div class="col-md-2 runs" id="v_runs"></div>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ticker">Ticker</div>
+        <div class="col-md-1"></div>
+      </div>
     </div>
 
 <!--Coach Update Game View -->
