@@ -31,14 +31,6 @@ module.exports = function (sequelize, DataTypes) {
           len: [1],
         },
       },
-      created_at: {
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updated_at: {
-        field: "updated_at",
-        type: DataTypes.DATE,
-      },
     },
     {
       timestamps: false,

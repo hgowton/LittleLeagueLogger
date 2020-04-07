@@ -28,65 +28,193 @@ INSERT INTO users
 VALUES("Ross@gmail.com", "ccc23ccc23", 0, "Jaguars");
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("King of Prussia", "2020-04-03", "Crocs", "Jaguars");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "King of Prussia", "2020-04-03", "Crocs", "Jaguars");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-04-03", 1, 2, 2, 1, 1, 1, 0, 0, 2, 2, 1, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Philadelphia", "2020-04-07", "Knights", "Jaguars");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Philadelphia", "2020-04-07", "Knights", "Jaguars");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES
+  ("2020-04-07", 0, 2, 2, 0, 0, 1, 0, 0, 2, 2, 1, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Chicago", "2020-04-17", "Falcons", "Jaguars");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-04-09", "Jaguars", "Falcons");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score, h_overtime, v_overtime)
+VALUES("2020-04-09", 3, 3, 2, 0, 0, 3, 2, 0, 0, 0, 1, 1, 1, 0);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Pittsburgh", "2020-04-29", "Pirates", "Jaguars");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-04-13", "Jaguars", "Knights");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score, h_overtime, v_overtime)
+VALUES("2020-04-13", 2, 0, 0, 2, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Exton", "2020-05-03", "Jaguars", "Pirates");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Chicago", "2020-04-17", "Falcons", "Jaguars");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-04-17", 2, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Exton", "2020-04-13", "Jaguars", "Knights");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-04-21", "Jaguars", "Falcons");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-04-21", 0, 0, 0, 3, 3, 6, 0, 0, 0, 0, 1, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Exton", "2020-04-23", "Jaguars", "Crocs");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-04-23", "Jaguars", "Crocs");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-04-23", 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1);
+
+
 
 INSERT INTO games
-  (location, date, home_team, away_team)
-VALUES("Exton", "2020-05-27", "Jaguars", "Falcons");
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Pittsburgh", "2020-04-29", "Pirates", "Jaguars");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(1, 2, 2, 1, 1, 1, 0, 0, 2, 2, 1, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-04-29", 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-01", "Crocs", "Jaguars");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(0, 2, 2, 0, 0, 1, 0, 0, 2, 2, 1, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-01", 2, 1, 2, 0, 1, 1, 0, 1, 0, 0, 2, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-04", "Jaguars", "Pirates");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(2, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-04", 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-07", "Jaguars", "Buzzards");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-07", 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-12", "Jaguars", "Wildcats");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-12", 2, 2, 3, 0, 2, 0, 2, 1, 1, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-13", "Knights", "Jaguars");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score, h_overtime, v_overtime)
-VALUES(2, 0, 0, 2, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-13", 0, 2, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-18", "Jaguars", "Falcons");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
-VALUES(1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-18", 2, 3, 1, 1, 2, 0, 4, 0, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(1, 0, "Exton", "2020-05-20", "Wildcats", "Jaguars");
 
 INSERT INTO scores
-  (h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score, h_overtime, v_overtime)
-VALUES(1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0);
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-20", 4, 2, 0, 1, 2, 0, 0, 1, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(0, 1, "Exton", "2020-05-27", "Jaguars", "Falcons");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score, h_overtime, v_overtime)
+VALUES("2020-05-27", 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(0, 0, "Exton", "2020-05-29", "Buzzards", "Jaguars");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-05-29", 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 1);
+
+
+
+INSERT INTO games
+  (completed, in_progress, location, date, home_team, away_team)
+VALUES(0, 0, "Exton", "2020-06-02", "Jaguars", "Knights");
+
+INSERT INTO scores
+  (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
+VALUES("2020-06-02", 0, 0, 0, 1, 2, 3, 2, 0, 0, 3, 1, 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
