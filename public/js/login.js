@@ -8,7 +8,8 @@ $(document).ready(function () {
         name: $("#email").val().trim(),
         // password: $("#password").val().trim()
       },
-      function() {
+      function(data) {
+        console.log(data);
         window.location.href = "/public/calendar.html";;
       });
   });
@@ -33,11 +34,14 @@ $(document).ready(function () {
     let coachVal = document.getElementById("checkBox").checked;
 
     var newUser = {
-      email: emailInput,
+      name: emailInput,
       password: passwordInput,
       coach: coachVal,
     };
     console.log(newUser);
+    $.post("/api/newUser", newUser).then(function(){
+      alert("New user account created!");
+    });
   });
 
   // Coach checkbox validation
