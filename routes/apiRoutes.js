@@ -8,12 +8,12 @@ module.exports = function(app) {
     //if it was "User" then it would be db.User
     db.User.findOne({ where: { name: req.body.name } }).then(function(dbUser) {
       res.json(dbUser);
-      console.log("this is from apiroutes.js " + dbUser.name);
+      // console.log("this is from apiroutes.js " + dbUser);
     });
   });
 
   app.post("/api/newUser", function(req, res) {
-    db.user.create(req.body);
+    db.User.create(req.body);
     res.end();
   });
 
