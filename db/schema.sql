@@ -23,25 +23,21 @@ CREATE TABLE users
 
     CREATE TABLE games
     (
-        game_id int NOT NULL
-        AUTO_INCREMENT,
+        game_date DATE NOT NULL,
 	location varchar
         (100) NOT NULL,
-	date DATE
-    NOT NULL,
     home_team varchar
         (100) NOT NULL,
     away_team varchar
         (100) NOT NULL,
 	PRIMARY KEY
-        (game_id)
+        (game_date)
 );
 
 
         CREATE TABLE scores
         (
-            game_id int
-            AUTO_INCREMENT NOT NULL,
+        game_date DATE NOT NULL,
 	h1_score INT
             (2),
     v1_score INT
@@ -71,7 +67,7 @@ CREATE TABLE users
     v_overtime INT
             (2),
 	PRIMARY KEY
-            (game_id)
+            (game_date)
 );
 
 
