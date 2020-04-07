@@ -1,5 +1,6 @@
-
 var express = require("express");
+var exphbs = require("express-handlebars");
+var crypto = require("crypto");
 
 // Sets up the Express App
 

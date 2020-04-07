@@ -9,8 +9,9 @@ $(document).ready(function () {
         // password: $("#password").val().trim()
       },
       function(data) {
-        console.log(data);
-        window.location.href = "/public/calendar.html";;
+        // if(correctPassword() == true)
+        console.log(dbUser.correctPassword);
+        // window.location.href = "/calendar";
       });
   });
 
@@ -39,9 +40,7 @@ $(document).ready(function () {
       name: emailInput,
       password: passwordInput,
       coach: coachVal,
-      team: "what",
-      
-
+      team: "Jaguars"
     };
     console.log(newUser);
     $.post("/api/newUser", newUser).then(function(){
