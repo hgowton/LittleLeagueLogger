@@ -9,8 +9,8 @@ $(document).ready(function () {
         // password: $("#password").val().trim()
       },
       function(data) {
-        console.log(data);
-        window.location.href = "/public/calendar.html";;
+        console.log(window.location.href);
+        window.location.href = "/calendar";
       });
   });
 
