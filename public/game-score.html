@@ -13,9 +13,12 @@
 
   </head>
 <body>
+    <!--User 1 view of game statistics-->
     <div class="container main-section">
         <div class="row">
-            <div class="col-md-12 info" id="date">Date and Time</div>
+            <div class="col-md-10 info" id="date">Date and Time</div>
+            <div class="col-md-2"><img id="logo" src="./img/logo.png" alt="little league logger logo" /></div>
+
         </div>
         <div class="row">
             <div class="col-md-6 info" id="h_name">Home Team:</div>
@@ -67,5 +70,51 @@
             <div class="col-md-1"></div>
         </div>
     </div>
+
+<!--Coach Update Game View -->
+<div class="container main-sectionC">
+    <div class="row">
+        <div class="col-md-12 info" id="message">Update the score for each inning by clicking on the inning and team. Type in the new score. Press update button. </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-1 inning">1</div>
+            <div class="col-md-1 inning">2</div>
+            <div class="col-md-1 inning">3</div>
+            <div class="col-md-1 inning">4</div>
+            <div class="col-md-1 inning">5</div>
+            <div class="col-md-1 inning">6</div>
+            <div class="col-md-2 inning">RUNS</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 team">HOME</div>
+            <div class="col-md-1 scoreC" id="h1_scoreC">1</div>
+            <div class="col-md-1 scoreC" id="h2_scoreC">2</div>
+            <div class="col-md-1 scoreC" id="h3_scoreC">3</div>
+            <div class="col-md-1 scoreC" id="h4_scoreC"></div>
+            <div class="col-md-1 scoreC" id="h5_scoreC"></div>
+            <div class="col-md-1 scoreC" id="h6_scoreC"></div>
+            <div class="col-md-2 runsC" id="h_runs"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 team">VISTING</div>
+            <div class="col-md-1 scoreC" id="v1_scoreC">1</div>
+            <div class="col-md-1 scoreC" id="v2_scoreC">2</div>
+            <div class="col-md-1 scoreC" id="v3_scoreC">3</div>
+            <div class="col-md-1 scoreC" id="v4_scoreC"></div>
+            <div class="col-md-1 scoreC" id="v5_scoreC"></div>
+            <div class="col-md-1 scoreC" id="v6_scoreC"></div>
+            <div class="col-md-2 runsC" id="v_runs"></div>
+        </div>
+    </div>
+
+
+</div>
+
 </body>
 </html>
