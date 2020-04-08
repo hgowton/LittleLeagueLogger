@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Scores = sequelize.define(
+  var Score = sequelize.define(
     "Score",
     {
       game_id: {
@@ -7,6 +7,15 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+      },
+      date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        validate: {
+          isDate: true,
+          isAfter: "2020-03-01",
+          isBefore: "2020-09-30",
+        },
       },
       h1_score: {
         type: DataTypes.INTEGER,
@@ -86,18 +95,10 @@ module.exports = function (sequelize, DataTypes) {
       v_overtime: {
         type: DataTypes.INTEGER,
       },
-      created_at: {
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updated_at: {
-        field: "updated_at",
-        type: DataTypes.DATE,
-      },
     },
     {
       timestamps: false,
     }
   );
-  return Scores;
+  return Score;
 };

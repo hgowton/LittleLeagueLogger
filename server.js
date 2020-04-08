@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var crypto = require("crypto");
 
 var db = require("./models");
 
@@ -15,7 +16,7 @@ app.use(express.static("public"));
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-
+require("./routes/scores-api-routes")(app);
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
