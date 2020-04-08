@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Score = sequelize.define(
+  var Scores = sequelize.define(
     "Score",
     {
       game_id: {
@@ -100,5 +100,5 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
     }
   );
-  return Score;
+  return Scores;
 };

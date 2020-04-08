@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.get("/calendar", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/calendar.html"));
   });
-  
+
   // Load game score page
   app.get("/game-score", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/game-score.html"));
