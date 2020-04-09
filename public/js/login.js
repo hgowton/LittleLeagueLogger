@@ -27,13 +27,15 @@ $(document).ready(function () {
   });
 
   // The create button that submits the form data
-  $("#createAccount").on("submit", function (event) {
+  $("#createUserAccount").on("click", function (event) {
     event.preventDefault();
+
+    console.log("create account button");
 
     let emailInput = $("#createEmail").val().trim();
     let passwordInput = $("#createPassword").val().trim();
     let coachVal = document.getElementById("checkBox").checked;
-
+//
     var newUser = {
       name: emailInput,
       password: passwordInput,
@@ -45,6 +47,9 @@ $(document).ready(function () {
       alert("New user account created!");
     });
   });
+
+
+
 
   // Coach checkbox validation
   $("#checkBox").on("click", function (event) {
