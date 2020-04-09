@@ -6,12 +6,17 @@ $(document).ready(function () {
       "/api/user",
       {
         name: $("#email").val().trim(),
-        // password: $("#password").val().trim()
+        password: $("#password").val().trim()
       },
-      function(data) {
-        // if(correctPassword() == true)
-        console.log(dbUser.correctPassword);
-        // window.location.href = "/calendar";
+      function(result) {
+        if(result) {
+
+          alert("Login successful!");
+          window.location.href = "/calendar";
+        }
+        else {
+          alert("Incorrect email/password");
+        }
       });
   });
 
@@ -44,6 +49,10 @@ $(document).ready(function () {
     };
     console.log(newUser);
     $.post("/api/newUser", newUser).then(function(){
+
+      // bcrypt.hash(newUser.password, 10, function(err, hash) {
+      //   console.log(newUser.password);
+      // })
       alert("New user account created!");
     });
   });
@@ -68,14 +77,15 @@ $(document).ready(function () {
   // var $email = $("#email").val().trim();
 
   // function userLogin() {
-  //   $.post(
-  //     "/api/user",
-  //     {
-  //       email: $("#email").val().trim(),
-  //       // password: $("#password").val().trim()
-  //     },
-  //     function(data) {
-  //       console.log(data);
+    // $.post(
+    //   "/api/user",
+    //   {
+    //     email: $("#email").val().trim(),
+    //     // password: $("#password").val().trim()
+    //   },
+    //   function(results) {
+    //     console.log(results);
+    //   });
         // if (data !== null) {
         //   window.location.href = "/public/calendar.html";
         //   //look up javascript window
