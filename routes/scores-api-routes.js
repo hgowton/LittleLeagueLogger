@@ -38,4 +38,16 @@ module.exports = function(app) {
             res.json(dbScores);
         });
     });
+
+    //PUT route for updating scores
+    app.put("/api/scores", function(req, res){
+        db.Score.update(req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function(dbScores) {
+                res.json(dbScores);
+            });
+    });
 };

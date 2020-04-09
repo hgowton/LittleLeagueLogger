@@ -51,6 +51,7 @@ $(document).ready(function() {
     function getInfo() {
         $.get("/api/games/", function(data) {
             var gameData = data[gamID]
+            console.log(data)
             $("#h_name").text("Home Team: " + gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
