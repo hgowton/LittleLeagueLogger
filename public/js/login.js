@@ -6,12 +6,17 @@ $(document).ready(function () {
       "/api/user",
       {
         name: $("#email").val().trim(),
-        // password: $("#password").val().trim()
+        password: $("#password").val().trim()
       },
-      function() {
-        // if(correctPassword() == true)
-        alert("Login successful!");
-        // window.location.href = "/calendar";
+      function(result) {
+        if(result) {
+
+          alert("Login successful!");
+          window.location.href = "/calendar";
+        }
+        else {
+          alert("Incorrect email/password");
+        }
       });
   });
 

@@ -11,15 +11,17 @@ module.exports = function(app) {
     app.post("/api/user", function(req, res) {
       db.User.findOne({
           where: {
-              name: req.body.email
+              name: req.body.name,
+              password: req.body.password
                   }
       }).then(function (User) {
-          if (!user) {
+        console.log(req.body);
+        if (!User){
             res.redirect('/');
           } else {
-            bcrypt.compare(req.body.password, user.password,
+            bcrypt.compare(req.body.password, User.password,
             function (err, result) {
-              console.log(result.password);
+              console.log("This is result: " + result);
               if (result == true) {
                 res.redirect('/calendar');
               } else {
