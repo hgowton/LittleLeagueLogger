@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "test",
     "password": "",
     "database": "llldb",
     "host": "127.0.0.1",
@@ -8,8 +8,8 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "B0otcamp!",
+    "username": "test",
+    "password": "",
     "database": "llldb",
     "host": "127.0.0.1",
     "port": 3306,

@@ -61,15 +61,19 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/games", function(req, res) {
-    db.Game.findAll({}).then(function(data) {
+  app.get("/api/games", function (req, res) {
+    db.Game.findAll({}).then(function (data) {
+      for (i = 0; i < data.length; i++) {
+        console.log(data[i].date);
+      }
+
       res.json(data);
     });
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
+  app.post("/api/examples", function (req, res) {
+    db.Example.create(req.body).then(function (dbExample) {
       res.json(dbExample);
     });
   });
