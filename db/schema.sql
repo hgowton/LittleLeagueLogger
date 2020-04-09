@@ -81,7 +81,3 @@ v_overtime INT
 PRIMARY KEY
                         (game_id)
 );
-
-
-
-
