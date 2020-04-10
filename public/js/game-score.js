@@ -87,7 +87,7 @@ $(document).ready(function() {
     });
   });
 
-  $("#support").on("click", function (event) {
+  $("#support").on("click", function(event) {
     event.preventDefault();
   });
 
@@ -103,13 +103,7 @@ $(document).ready(function() {
     });
     $('#tick').css({ 'width': temp + 40, 'margin-left': '20px' });
     temp = 1000;
-    $('#tick2 li').each(function () {
-        var offset = $(this).offset();
-        var offsetLeft = offset.left;
-        $(this).css({ 'left': offsetLeft + temp });
-        temp = $(this).width() + temp + 10;
-    });
-    $('#tick2').css({ 'width': temp + 40, 'margin-left': temp + 40 });
+
 
     function abc(a, b) {
 

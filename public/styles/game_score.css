@@ -78,11 +78,7 @@
     color: white;
 }
 
-#support {
 
-margin-top: 20px;
-margin-bottom: 10px; 
-}
 
 .comments {
 color: white;
@@ -114,3 +110,15 @@ margin-right: 400px;
 
 }
 
+#support,#commentName,#commentComment {
+
+margin-top: 20px;
+margin-bottom: 10px; 
+
+
+}
+
+#commentName,#commentComment {
+
+color:white;
+}
