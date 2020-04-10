@@ -77,3 +77,40 @@
     text-align: center;
     color: white;
 }
+
+#support {
+
+margin-top: 20px;
+margin-bottom: 10px; 
+}
+
+.comments {
+color: white;
+display: block;
+float:left;
+
+}
+.missing {
+    display:none;   
+}
+
+#tick {
+
+margin-right: -5000px;
+
+}
+
+#outer
+{
+width:3000px;
+height:25px; 
+overflow:hidden;
+margin-top: 15px;
+}
+
+span.comments {
+
+margin-right: 400px;
+
+}
+

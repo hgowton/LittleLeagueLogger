@@ -25,15 +25,7 @@ module.exports = function (sequelize, DataTypes) {
           len: [1],
         },
       },
-      date: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-        validate: {
-          isDate: true,
-          isAfter: "2020-03-01",
-          isBefore: "2020-09-30",
-        },
-      },
+     
       home_team: {
         type: DataTypes.STRING,
         allowNull: false,
