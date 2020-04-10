@@ -3,18 +3,25 @@ $(document).ready(function() {
     //grabs the game_id from the URL
     var parsedURL = new URL(window.location.href);
     var gamID = parseInt(parsedURL.searchParams.get("id")) - 1;
-
     console.log(gamID)
 
-    //initialize game info array to populate date, teams, date, and location
+    //Getting a reference for coach to update home and away scores
+    var $updateHome = $(".updateHome");
+    var $updateAway = $(".updateAway");
+
+    //Event listeners for editing home and away scores
+    $(document).on("click", ".update-score", editScore);
+    $(document).on("keyup", ".update-score", finishUpdate);
+    // $(document).on("blur", ".update-score", cancelUpdate)
+
+    //Get information from games and scores tables
     getInfo();
     scoreInfo();
 
-    //this function grabs game info from llldb
+    //this function grabs score info from llldb
     function scoreInfo() {
-        $.ajax({url: "/api/scores/", method: "GET"})
-        .then(function(tableData) {
-            var gameData = tableData[gamID]
+        $.get("/api/scores/", function(data) {
+            var gameData = data[gamID]
             $("#date").text("Date: " + gameData.date);
             $("#h1_score").text(gameData.h1_score);
             $("#v1_score").text(gameData.v1_score);
@@ -40,13 +47,44 @@ $(document).ready(function() {
         })
     }
 
+    //this function grabs game info from llldb
     function getInfo() {
-        $.ajax({url: "/api/games/", method: "GET"})
-        .then(function(tableData) {
-            var gameData = tableData[gamID]
+        $.get("/api/games/", function(data) {
+            var gameData = data[gamID]
+            console.log(data)
             $("#h_name").text("Home Team: " + gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
         })
+    }
+
+    function editScore() {
+        var currentScore = $(this).data("score");
+        $(this).children().hide();
+        $(this).children("input.edit").val(currentScore.text);
+        $(this).children("span").show();
+        // $(this).children("button").show();
+    }
+
+    //coach must press enter (event.which) to solidify update
+    function finishUpdate(event) {
+        var updatedScore = $(this).data("score");
+        if(event.which === 13) {
+            updatedScore.text = $(this).children("input").val().trim();
+            $(this).blur();
+            updateScore(updatedScore);
+            console.log(updatedScore)
+        }
+    }
+
+    //updates the coach's score input to database
+    function updateScore(newScore) {
+        $.ajax({
+            method: "PUT",
+            url: "/api/scores",
+            data: newScore
+        }).then(
+            scoreInfo()
+        )
     }
 });
