@@ -4,15 +4,18 @@ $(document).ready(function() {
     var parsedURL = new URL(window.location.href);
     var gamID = parseInt(parsedURL.searchParams.get("id")) - 1;
     console.log(gamID)
+    var gameID =  parseInt(parsedURL.searchParams.get("id"));
+    console.log(gameID)
 
     //Getting a reference for coach to update home and away scores
     var $updateHome = $(".updateHome");
     var $updateAway = $(".updateAway");
 
     //Event listeners for editing home and away scores
-    $(document).on("click", ".update-score", editScore);
+    $(document).on("focus", ".update-score", editScore);
     $(document).on("keyup", ".update-score", finishUpdate);
-    // $(document).on("blur", ".update-score", cancelUpdate)
+    $(document).on("blur", ".update-score", cancelUpdate)
+
 
     //Get information from games and scores tables
     getInfo();
@@ -51,7 +54,6 @@ $(document).ready(function() {
     function getInfo() {
         $.get("/api/games/", function(data) {
             var gameData = data[gamID]
-            console.log(data)
             $("#h_name").text("Home Team: " + gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
@@ -59,21 +61,21 @@ $(document).ready(function() {
     }
 
     function editScore() {
-        var currentScore = $(this).data("score");
-        $(this).children().hide();
-        $(this).children("input.edit").val(currentScore.text);
-        $(this).children("span").show();
-        // $(this).children("button").show();
+        var currentScore = $(this).val();
+        console.log("editScore: " + currentScore)
     }
 
     //coach must press enter (event.which) to solidify update
     function finishUpdate(event) {
-        var updatedScore = $(this).data("score");
         if(event.which === 13) {
-            updatedScore.text = $(this).children("input").val().trim();
+            var inning = $(this).attr("data-teamInning")
+            var uScore = $(this).val().trim()
+            var updatedScore = {
+                [inning]: uScore
+            }
             $(this).blur();
             updateScore(updatedScore);
-            console.log(updatedScore)
+            console.log("updatedscore " + inning + uScore)
         }
     }
 
@@ -81,10 +83,19 @@ $(document).ready(function() {
     function updateScore(newScore) {
         $.ajax({
             method: "PUT",
-            url: "/api/scores",
+            url: `/api/scores/${gameID}`,
             data: newScore
-        }).then(
-            scoreInfo()
-        )
+        }).then(scoreInfo)
+        console.log("newScore " + newScore)
+        scoreInfo();
+        location.reload(true)
     }
+
+    //cancel update
+    function cancelUpdate () {
+        if (currentScore) {
+            $(this).val(currentScore);
+        }
+    }
+
 });
