@@ -44,7 +44,18 @@ module.exports = function(app) {
         db.Score.update(req.body,
             {
                 where: {
-                    id: req.body.id
+                    game_id: req.body.id
+                }
+            }).then(function(dbScores) {
+                res.json(dbScores);
+            });
+    });
+
+    app.put("/api/scores/:id", function(req, res){
+        db.Score.update(req.body,
+            {
+                where: {
+                    game_id: req.params.id,
                 }
             }).then(function(dbScores) {
                 res.json(dbScores);
