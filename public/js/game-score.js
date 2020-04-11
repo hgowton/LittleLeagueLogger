@@ -11,9 +11,7 @@ $(document).ready(function () {
     //Event listeners for editing home and away scores
     $(document).on("focus", ".update-score", editScore);
     $(document).on("keyup", ".update-score", finishUpdate);
-    $(document).on("blur", ".update-score", cancelUpdate);
     $(document).on("click", "#gameOver", gameOver);
-
 
     //Get information from games and scores tables
     getInfo();
@@ -36,6 +34,8 @@ $(document).ready(function () {
             $("#v5_score").text(gameData.v5_score);
             $("#h6_score").text(gameData.h6_score);
             $("#v6_score").text(gameData.v6_score);
+            $("#h_overtime").text(gameData.h_overtime);
+            $("#v_overtime").text(gameData.v_overtime);
 
             //calculates home score
             var h_runs = gameData.h1_score + gameData.h2_score + gameData.h3_score + gameData.h4_score + gameData.h5_score + gameData.h6_score + gameData.h_overtime;
@@ -45,6 +45,11 @@ $(document).ready(function () {
 
             $("#h_runs").text(h_runs);
             $("#v_runs").text(v_runs);
+            
+            //shows overtime fields if 
+            if (gameData.h_overtime >=1 || gameData.o_overtime >=1) {
+                $(".OT").show();
+            }
         })
     }
 
@@ -209,8 +214,13 @@ $(document).ready(function () {
         $.get("/api/games/", function (data) {
             var gameData = data[gamID]
             $("#h_name").text("Home Team: " + gameData.home_team)
+            $(".home").text(gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
+            $(".visit").text(gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
+            if (gameData.in_progress == true) {
+                $("#coachInput").show();
+            }
         })
     }
 
@@ -253,21 +263,50 @@ $(document).ready(function () {
             "in_progress": 0,
             "completed": 1
         };
-        console.log(updatedGame);
         $.ajax({
             method: "PUT",
             url: `/api/games/${gameID}`,
             data: updatedGame
         }).then(
-            console.log("In progress and completed"),
-            // location.reload(true)
+            location.reload(true)
         )
     }
 
-    //cancel update
-    function cancelUpdate() {
-        if (currentScore) {
-            $(this).val(currentScore);
-        }
-    }
+    //reschedule date of an existing game
+    $("#changeDate").on("click", function(event) {
+        //Allows user to press enter or click add button and prevents the form from trying to submit itself
+        event.preventDefault();
+        var dateInput = $("#newDate");
+        
+        var updateDate = {
+            "date": dateInput.val().trim()
+        };
+
+
+        $.ajax({
+            method: "PUT",
+            url:`/api/games/${gameID}`,
+            data: updateDate
+        }).then(
+            console.log("date updated in scores table")
+            // window.location.href = "/calendar"
+        )
+
+        $.ajax({
+            method: "PUT",
+            url:`/api/scores/${gameID}`,
+            data: updateDate
+        }).then(
+            console.log("date updated in games table")
+            // window.location.href = "/calendar"
+        )
+        alert("This game has been rescheduled.")
+
+    })
+
+    $("#overtime").on("click", function(event) {
+        //Allows user to press enter or click add button and prevents the form from trying to submit itself
+        event.preventDefault();  
+        $(".OT").show();
+    })
 });
