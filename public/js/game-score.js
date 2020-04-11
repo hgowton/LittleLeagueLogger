@@ -3,18 +3,16 @@ $(document).ready(function() {
     //grabs the game_id from the URL
     var parsedURL = new URL(window.location.href);
     var gamID = parseInt(parsedURL.searchParams.get("id")) - 1;
-    console.log(gamID)
+    
+    //creates game ID for use with database
     var gameID =  parseInt(parsedURL.searchParams.get("id"));
-    console.log(gameID)
 
-    //Getting a reference for coach to update home and away scores
-    var $updateHome = $(".updateHome");
-    var $updateAway = $(".updateAway");
 
     //Event listeners for editing home and away scores
     $(document).on("focus", ".update-score", editScore);
     $(document).on("keyup", ".update-score", finishUpdate);
-    $(document).on("blur", ".update-score", cancelUpdate)
+    $(document).on("blur", ".update-score", cancelUpdate);
+    $(document).on("click", "#gameOver", gameOver);
 
 
     //Get information from games and scores tables
@@ -89,6 +87,24 @@ $(document).ready(function() {
         console.log("newScore " + newScore)
         scoreInfo();
         location.reload(true)
+    }
+
+
+    //switches game from inprogress to over
+    function gameOver() {
+        var updatedGame = {
+            "in_progress": 0,
+            "completed": 1
+        };
+        console.log(updatedGame);
+        $.ajax({
+            method: "PUT",
+            url: `/api/games/${gameID}`,
+            data: updatedGame
+        }).then(
+            console.log("In progress and completed"),
+            // location.reload(true)
+        )
     }
 
     //cancel update

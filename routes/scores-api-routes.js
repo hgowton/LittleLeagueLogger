@@ -20,7 +20,16 @@ module.exports = function(app) {
         });
     });
 
-    //may need to go on a different page?? -- think about how this ties in with the coach functionality when a game is created
+    app.get("/api/games/:id", function(req, res) {
+        db.Game.findOne({
+            where: {
+                game_id: req.params.id
+            }
+        }).then(function(dbGame) {
+            res.json(dbGame)
+        });
+    });
+
     app.post("/api/scores", function (req, res) {
         //Create a game log
         console.log(req.body);
@@ -51,6 +60,7 @@ module.exports = function(app) {
             });
     });
 
+    //Works with updateScore() to allow coach to update score
     app.put("/api/scores/:id", function(req, res){
         db.Score.update(req.body,
             {
@@ -59,6 +69,20 @@ module.exports = function(app) {
                 }
             }).then(function(dbScores) {
                 res.json(dbScores);
+            });
+    });
+
+    //updates game to over instead of inprogress
+    app.put("/api/games/:id", function(req, res){
+        console.log("first part of put request")
+        db.Game.update(req.body,
+            {
+                where: {
+                    game_id: req.params.id,
+                }
+            }).then(function(dbGame) {
+                console.log("second part of put - are we here?")
+                res.json(dbGame);
             });
     });
 };
