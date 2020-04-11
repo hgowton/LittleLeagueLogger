@@ -64,6 +64,7 @@ $(document).ready(function() {
     });
   }
 
+function getComments(){
 
   $.ajax({ url: "/api/comments/", method: "GET" }).then(function(commentData) {
     var results = commentData;
@@ -78,7 +79,9 @@ $(document).ready(function() {
 
       var p = $("<span>").text(results[index].comment);
       var pp = $("<span>").text("  . . . from " + results[index].name);
+      var ppp = $("<span>").text(" . . . " + results[index].date);
       p.append(pp);
+      p.append(ppp);
       p.addClass("comments");
 
       lists.append(p);
@@ -86,48 +89,138 @@ $(document).ready(function() {
       getDiv.append(lists);
     });
   });
+}
+getComments();
+
+
+
+  $("#tick2").html($("#tick").html());
+  //alert($('#tick2').offset.left);
+
+  var temp = 0,
+    intervalId = 0;
+  $("#tick li").each(function() {
+    var offset = $(this).offset();
+    var offsetLeft = offset.left;
+    $(this).css({ left: offsetLeft + temp });
+    temp = $(this).width() + temp + 10;
+  });
+  $("#tick").css({ width: temp + 40, "margin-left": "20px" });
+  temp = 1000;
+
+  function abc(a, b) {
+
+    var marginLefta = parseInt($("#" + a).css("marginLeft"));
+    var marginLeftb = parseInt($("#" + b).css("marginLeft"));
+    if (
+      -marginLefta <= $("#" + a).width() &&
+      -marginLefta <= $("#" + a).width()
+    ) {
+      $("#" + a).css({ "margin-left": marginLefta - 1 + "px" });
+    } else {
+      $("#" + a).css({ "margin-left": temp });
+    }
+    if (-marginLeftb <= $("#" + b).width()) {
+      $("#" + b).css({ "margin-left": marginLeftb - 1 + "px" });
+    } else {
+      $("#" + b).css({ "margin-left": temp });
+    }
+  }
+
+  function start() {
+    intervalId = window.setInterval(function() {
+      abc("tick", "tick2");
+    }, 10);
+  }
+
+  $(function() {
+    $("#outer").mouseenter(function() {
+      window.clearInterval(intervalId);
+    });
+    $("#outer").mouseleave(function() {
+      start();
+    });
+    start();
+  });
 
   $("#support").on("click", function(event) {
     event.preventDefault();
+    var getName = $("#getName")
+      .val()
+      .trim();
+    var newMessage = $("#message")
+      .val()
+      .trim();
+
+    console.log("get Name" + getName);
+   
+    $.ajax({
+      method: "GET",
+      url: "/api/users/" + getName
+    })
+      .then(function (match) {
+        if (match){
+         var team = match.team;
+         var emaill = match.name;
+         console.log("team "+team);
+         console.log("email " + emaill);
+          
+          function insertMessage() {
+            
+          var newEntry = {
+            comment: newMessage,
+            date: "2020-04-09",
+            team: team,
+            name: emaill
+            };
+            console.log("newENtry " + newEntry);
+
+            // $.ajax("/api/comments", {
+            //   type: "POST",
+            //   data: newEntry
+            // }).then(
+            //   function () {
+            //     console.log("created new comment");
+            //     // Reload the page to get the updated list
+            //     location.reload();
+            //   }
+            // );
+
+            $.post("/api/newComment",newEntry).then(function(){
+              alert("new comment was created!")
+
+            })
+            
+
+         }
+insertMessage();
+
+          console.log(match);
+          console.log(team);
+
+
+
+        } else {
+          alert("You must be a registered user to add comments");
+        }
+  
+      });
   });
-
-    $('#tick2').html($('#tick').html());
-    //alert($('#tick2').offset.left);
-
-    var temp = 0, intervalId = 0;
-    $('#tick li').each(function () {
-        var offset = $(this).offset();
-        var offsetLeft = offset.left;
-        $(this).css({ 'left': offsetLeft + temp });
-        temp = $(this).width() + temp + 10;
-    });
-    $('#tick').css({ 'width': temp + 40, 'margin-left': '20px' });
-    temp = 1000;
-
-
-    function abc(a, b) {
-
-        var marginLefta = (parseInt($("#" + a).css('marginLeft')));
-        var marginLeftb = (parseInt($("#" + b).css('marginLeft')));
-        if ((-marginLefta <= $("#" + a).width()) && (-marginLefta <= $("#" + a).width())) {
-            $("#" + a).css({ 'margin-left': (marginLefta - 1) + 'px' });
-        } else {
-            $("#" + a).css({ 'margin-left': temp });
-        }
-        if ((-marginLeftb <= $("#" + b).width())) {
-            $("#" + b).css({ 'margin-left': (marginLeftb - 1) + 'px' });
-        } else {
-            $("#" + b).css({ 'margin-left': temp });
-        }
-    }
-
-    function start() { intervalId = window.setInterval(function () { abc('tick', 'tick2'); }, 10) }
-
-    $(function () {
-        $('#outer').mouseenter(function () { window.clearInterval(intervalId); });
-        $('#outer').mouseleave(function () { start(); })
-        start();
-    });
-
-
 });
+
+
+
+
+// $.ajax("/api/burgers", {
+//   type: "POST",
+//   data: newBurger
+// }).then(
+//   function () {
+//     console.log("created new burger");
+//     // Reload the page to get the updated list
+//     location.reload();
+//   }
+// );
+
+    
+

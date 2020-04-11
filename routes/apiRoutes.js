@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Get all examples
-  app.post("/api/user", function (req, res) {
+  app.post("/api/users", function (req, res) {
     console.log("this is req.body" + req.body.name);
     //db.user needs to equal "user" in defining sequelize var
     //if it was "User" then it would be db.User
@@ -17,7 +17,12 @@ module.exports = function (app) {
     res.end();
   });
 
-  app.get("/api/examples", function (req, res) {
+  app.post("/api/newComment", function(req, res) {
+    db.Comment.create(req.body);
+    res.end();
+  });
+
+  app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function (dbExamples) {
       res.json(dbExamples);
     });
@@ -33,6 +38,16 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/users", function (req, res) {
+    db.User.findAll({}).then(function (data) {
+      for (i = 0; i < data.length; i++) {
+        console.log(data[i].date);
+      }
+
+      res.json(data);
+    });
+  });
+
   app.get("/api/comments", function(req, res) {
     db.Comment.findAll({}).then(function (data) {
       for (i = 0; i < data.length; i++) {
@@ -40,6 +55,20 @@ module.exports = function (app) {
       }
       res.json(data);
     });
+  });
+
+
+    // Get route for retrieving a single user
+  app.get("/api/users/:name", function(req, res) {
+    db.User.findOne({
+      where: {
+        name: req.params.name
+      }
+    })
+      .then(function(dbUser) {
+      res.json(dbUser);
+      console.log("Find team name" + dbUser.team);
+      });
   });
 
   // Create a new example
