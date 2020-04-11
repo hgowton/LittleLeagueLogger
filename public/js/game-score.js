@@ -46,6 +46,11 @@ $(document).ready(function() {
             
             $("#h_runs").text(h_runs);
             $("#v_runs").text(v_runs);
+            
+            //shows overtime fields if 
+            if (gameData.h_overtime >=1 || gameData.o_overtime >=1) {
+                $(".OT").show();
+            }
         })
     }
 
