@@ -205,3 +205,25 @@ VALUES(0, 0, "Exton", "2020-06-02", "Jaguars", "Knights");
 INSERT INTO scores
   (date, h1_score, v1_score, h2_score, v2_score, h3_score, v3_score, h4_score, v4_score, h5_score, v5_score, h6_score, v6_score)
 VALUES("2020-06-02", 0, 0, 0, 1, 2, 3, 2, 0, 0, 3, 1, 1);
+
+
+
+INSERT INTO comments
+  (comment, date, team, name)
+VALUES("You all played so well today!", "2020-06-02", "jaguars", "Heather@gmail.com");
+
+INSERT INTO comments
+  (comment, date, team, name)
+VALUES("Great Job Team!", "2020-06-02", "jaguars", "Heather@gmail.com");
+
+INSERT INTO comments
+  (comment, date, team, name)
+VALUES("I think we are gonna go all the way!", "2020-06-02", "jaguars", "Heather@gmail.com");
+
+INSERT INTO comments
+  (comment, date, team, name)
+VALUES("Atleast we look good!", "2020-06-02", "jaguars", "Heather@gmail.com");
+
+INSERT INTO comments
+  (comment, date, team, name)
+VALUES("Yankees Suck!", "2020-06-02", "jaguars", "Heather@gmail.com");
