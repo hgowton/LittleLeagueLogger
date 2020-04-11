@@ -55,6 +55,46 @@ module.exports = function (app) {
     // res.end();
   });
 
+  app.post("/api/newComment", function(req, res) {
+    db.Comment.create(req.body);
+    res.end();
+  });
+
+
+  app.get("/api/users", function (req, res) {
+    db.User.findAll({}).then(function (data) {
+      for (i = 0; i < data.length; i++) {
+        console.log(data[i].date);
+      }
+
+      res.json(data);
+    });
+  });
+
+
+  app.get("/api/comments", function (req, res) {
+    db.Comment.findAll({}).then(function (data) {
+      for (i = 0; i < data.length; i++) {
+        console.log(data[i].comment);
+      }
+      res.json(data);
+    });
+  });
+
+  // Get route for retrieving a single user
+  app.get("/api/users/:name", function (req, res) {
+    db.User.findOne({
+      where: {
+        name: req.params.name
+      }
+    })
+      .then(function (dbUser) {
+        res.json(dbUser);
+        console.log("Find team name" + dbUser.team);
+      });
+  });
+
+
   app.get("/api/examples", function (req, res) {
     db.Example.findAll({}).then(function (dbExamples) {
       res.json(dbExamples);
