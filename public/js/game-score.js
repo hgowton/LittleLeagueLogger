@@ -192,6 +192,7 @@ getComments();
             })
             
 
+<<<<<<< HEAD
          }
 insertMessage();
 
@@ -224,3 +225,72 @@ insertMessage();
 
     
 
+=======
+    //this function grabs game info from llldb
+    function getInfo() {
+        $.get("/api/games/", function(data) {
+            var gameData = data[gamID]
+            $("#h_name").text("Home Team: " + gameData.home_team)
+            $("#v_name").text("Visiting Team: " + gameData.away_team)
+            $("#loc").text("Location: " + gameData.location)
+        })
+    }
+
+    function editScore() {
+        var currentScore = $(this).val();
+        console.log("editScore: " + currentScore)
+    }
+
+    //coach must press enter (event.which) to solidify update
+    function finishUpdate(event) {
+        if(event.which === 13) {
+            var inning = $(this).attr("data-teamInning")
+            var uScore = $(this).val().trim()
+            var updatedScore = {
+                [inning]: uScore
+            }
+            $(this).blur();
+            updateScore(updatedScore);
+            console.log("updatedscore " + inning + uScore)
+        }
+    }
+
+    //updates the coach's score input to database
+    function updateScore(newScore) {
+        $.ajax({
+            method: "PUT",
+            url: `/api/scores/${gameID}`,
+            data: newScore
+        }).then(scoreInfo)
+        console.log("newScore " + newScore)
+        scoreInfo();
+        location.reload(true)
+    }
+
+
+    //switches game from inprogress to over
+    function gameOver() {
+        var updatedGame = {
+            "in_progress": 0,
+            "completed": 1
+        };
+        console.log(updatedGame);
+        $.ajax({
+            method: "PUT",
+            url: `/api/games/${gameID}`,
+            data: updatedGame
+        }).then(
+            console.log("In progress and completed"),
+            // location.reload(true)
+        )
+    }
+
+    //cancel update
+    function cancelUpdate () {
+        if (currentScore) {
+            $(this).val(currentScore);
+        }
+    }
+
+});
+>>>>>>> ac7dcf90650e4665d732d70db85716b9d4809f7a
