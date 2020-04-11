@@ -81,3 +81,21 @@ v_overtime INT
 PRIMARY KEY
                         (game_id)
 );
+
+
+CREATE TABLE comments
+(
+        comment_id int NOT NULL
+        AUTO_INCREMENT,
+
+comment varchar
+        (500) NOT NULL,
+date DATE
+NOT NULL,
+team varchar
+        (100) NOT NULL,
+name varchar
+        (100) NOT NULL,
+PRIMARY KEY
+        (comment_id)
+);

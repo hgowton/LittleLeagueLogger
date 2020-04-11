@@ -76,7 +76,50 @@
 }
 
 #message {
-    text-shadow: 1px 1px 3px black;
-    text-align: center;
-    color: white;
+   
 }
+
+
+
+.comments {
+color: white;
+display: block;
+float:left;
+
+}
+.missing {
+    display:none;   
+}
+
+#tick {
+
+margin-right: -5000px;
+
+}
+
+#outer
+{
+width:3000px;
+height:25px; 
+overflow:hidden;
+margin-top: 15px;
+}
+
+span.comments {
+
+margin-right: 400px;
+
+}
+
+#support,#commentName,#commentComment {
+
+margin-top: 20px;
+margin-bottom: 10px; 
+
+
+}
+
+#commentName,#commentComment {
+
+color:white;
+} 
