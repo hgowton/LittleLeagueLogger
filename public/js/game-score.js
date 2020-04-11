@@ -55,6 +55,9 @@ $(document).ready(function() {
             $("#h_name").text("Home Team: " + gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
+            if (gameData.in_progress == true) {
+                $("#gameOver").show();
+            }
         })
     }
 
