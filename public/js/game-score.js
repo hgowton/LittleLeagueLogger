@@ -64,7 +64,7 @@ $(document).ready(function() {
             $(".visit").text(gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
             if (gameData.in_progress == true) {
-                $("#gameOver").show();
+                $("#coachInput").show();
             }
         })
     }
@@ -107,13 +107,11 @@ $(document).ready(function() {
             "in_progress": 0,
             "completed": 1
         };
-        console.log(updatedGame);
         $.ajax({
             method: "PUT",
             url: `/api/games/${gameID}`,
             data: updatedGame
         }).then(
-            console.log("In progress and completed"),
             location.reload(true)
         )
     }
