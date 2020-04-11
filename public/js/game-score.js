@@ -11,7 +11,6 @@ $(document).ready(function() {
     //Event listeners for editing home and away scores
     $(document).on("focus", ".update-score", editScore);
     $(document).on("keyup", ".update-score", finishUpdate);
-    $(document).on("blur", ".update-score", cancelUpdate);
     $(document).on("click", "#gameOver", gameOver);
 
     //Get information from games and scores tables
@@ -116,12 +115,37 @@ $(document).ready(function() {
         )
     }
 
-    //cancel update
-    function cancelUpdate () {
-        if (currentScore) {
-            $(this).val(currentScore);
-        }
-    }
+    //reschedule date of an existing game
+    $("#changeDate").on("click", function(event) {
+        //Allows user to press enter or click add button and prevents the form from trying to submit itself
+        event.preventDefault();
+        var dateInput = $("#newDate");
+        
+        var updateDate = {
+            "date": dateInput.val().trim()
+        };
+
+
+        $.ajax({
+            method: "PUT",
+            url:`/api/games/${gameID}`,
+            data: updateDate
+        }).then(
+            console.log("date updated in scores table")
+            // window.location.href = "/calendar"
+        )
+
+        $.ajax({
+            method: "PUT",
+            url:`/api/scores/${gameID}`,
+            data: updateDate
+        }).then(
+            console.log("date updated in games table")
+            // window.location.href = "/calendar"
+        )
+        alert("This game has been rescheduled.")
+
+    })
 
     $("#overtime").on("click", function(event) {
         //Allows user to press enter or click add button and prevents the form from trying to submit itself

@@ -140,9 +140,20 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3"><button type="submit" id="gameOver" class="btn btn-primary">Game Over</button></div>
-          <div class="col-md-6"></div>
-          <div class="col-md-3"><button type="submit" id="overtime" class="btn btn-primary">Overtime</button></div>
+          <div class="col-md-6">
+            <button type="submit" id="overtime" class="btn btn-primary">Overtime</button>
+            <button type="submit" id="gameOver" class="btn btn-primary">Game Over</button></div>
+          <div class="col-md-6">
+            <form id="form-date">
+              <div class="form-group">
+                <label for="date">New Date:</label>
+                <input placeholder="YYYY-MM-DD" type="date" class="form-control" id="newDate">
+                <button type="submit" class="btn btn-success submit" id="changeDate">Change Date</button>
+              </div>
+            </form>
+
+
+          </div>
         </div>
     </div>
 
