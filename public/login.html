@@ -109,7 +109,11 @@
                       >
                         Close
                       </button>
-                      <button id = "createUserAccount" type="submit" class="btn btn-primary">
+                      <button
+                        id="createUserAccount"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
                         Create
                       </button>
                     </div>
@@ -121,6 +125,8 @@
         </div>
       </div>
     </div>
+
+    <a href="/logout" class="btn btn-secondary">Logout</a>
 
     <script src="./js/login.js"></script>
     <script
@@ -135,40 +141,3 @@
     ></script>
   </body>
 </html>
-
-<script>
-
-  $(document).ready(function () {
-    $("input").click(function () {
-
-      var objectToChange = document.getElementById("#logo");
-      var pos = 0;
-      var startedMotion = setInterval(frame, 2);
-      function frame() {
-        if (pos == 360) {
-          clearInterval(startedMotion);
-        } else
-          pos++;
-          $("#logo").css("transform", "rotateY("+pos+"deg)");
-
-        console.log(pos)
-      }
-      frame()
-      
-
-
-
-
-
-
-
-    });
-    
-  });
-
-
-
-
-
-
-</script>

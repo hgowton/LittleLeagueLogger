@@ -1,37 +1,60 @@
 var db = require("../models");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
+var passport = require("passport");
 
 module.exports = function (app) {
   //db.user needs to equal "user" in defining sequelize var
   //if it was "User" then it would be db.User
 
   //login page: storing and comparing email and password,and redirecting to home page after login
-  app.post("/api/user", function (req, res) {
-    db.User.findOne({
-      where: {
-        name: req.body.name,
-      },
-    }).then(function (User) {
-      if (!User) {
-        res.send(false);
-      } else {
-        bcrypt.compare(req.body.password, User.password, function (
-          err,
-          result
-        ) {
-          if (result) {
-            res.send(true);
-            // res.redirect("/calendar");
-          } else {
-            console.log("incorrecct");
-            res.send(false);
-            // res.redirect("/");
-          }
-        });
-      }
-    });
+  // app.post("/api/user", function (req, res, next) {
+  // Login
+
+  app.post("/api/user", passport.authenticate("local"), function (req, res) {
+    // console.log(res.body);
+    res.send(true);
   });
+
+  // Logout
+  app.get("/logout", (req, res) => {
+    req.logout();
+    req.flash("success_msg", "You are logged out");
+    res.redirect("/");
+  });
+
+  // passport.authenticate("local", {
+  //   successRedirect: "/calendar",
+  //   failureRedirect: "/",
+  //   failureFlash: true,
+  // })(req, res, next);
+
+  // db.User.findOne({
+  //   where: {
+  //     name: req.body.name,
+  //   },
+  // }).then(function (User) {
+  //   if (!User) {
+  //     res.send(false);
+  //   } else {
+  //     bcrypt.compare(req.body.password, User.password, function (
+  //       err,
+  //       result
+  //     ) {
+  //       if (result) {
+  //         req.session.user = User.name;
+  //         req.session.coach = User.coach;
+  //         res.send(true);
+  //         // res.redirect("/calendar");
+  //       } else {
+  //         console.log("incorrecct");
+  //         res.send(false);
+  //         // res.redirect("/");
+  //       }
+  //     });
+  //   }
+  // });
+  // });
   // console.log("this is from apiroutes.js " + dbUser);
   // });
   // });

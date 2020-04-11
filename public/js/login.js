@@ -10,13 +10,16 @@ $(document).ready(function () {
       },
       function (result) {
         console.log(result);
+        console.log("wewfweq");
         if (result) {
-          alert("Login successful!");
+          console.log("Login successful!");
+          // console.log(req.session.coach);
           // window.location.href = "/calendar";
         } else {
-          alert("Incorrect email/password");
+          console.log("Incorrect email/password");
         }
-      }
+      },
+      "html"
     );
   });
 

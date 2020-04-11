@@ -1,4 +1,3 @@
-"";
 var path = require("path");
 
 module.exports = function (app) {
@@ -13,7 +12,7 @@ module.exports = function (app) {
   });
 
   // Load game score page
-  app.get("/game-score", function(req, res) {
+  app.get("/game-score", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/game-score.html"));
   });
 
