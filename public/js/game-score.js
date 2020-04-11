@@ -14,7 +14,6 @@ $(document).ready(function() {
     $(document).on("blur", ".update-score", cancelUpdate);
     $(document).on("click", "#gameOver", gameOver);
 
-
     //Get information from games and scores tables
     getInfo();
     scoreInfo();
@@ -36,7 +35,9 @@ $(document).ready(function() {
             $("#v5_score").text(gameData.v5_score);
             $("#h6_score").text(gameData.h6_score);
             $("#v6_score").text(gameData.v6_score);
-            
+            $("#h_overtime").text(gameData.h_overtime);
+            $("#v_overtime").text(gameData.v_overtime);
+
             //calculates home score
             var h_runs = gameData.h1_score + gameData.h2_score  + gameData.h3_score + gameData.h4_score + gameData.h5_score  + gameData.h6_score + gameData.h_overtime;
 
@@ -53,7 +54,9 @@ $(document).ready(function() {
         $.get("/api/games/", function(data) {
             var gameData = data[gamID]
             $("#h_name").text("Home Team: " + gameData.home_team)
+            $(".home").text(gameData.home_team)
             $("#v_name").text("Visiting Team: " + gameData.away_team)
+            $(".visit").text(gameData.away_team)
             $("#loc").text("Location: " + gameData.location)
             if (gameData.in_progress == true) {
                 $("#gameOver").show();
@@ -106,7 +109,7 @@ $(document).ready(function() {
             data: updatedGame
         }).then(
             console.log("In progress and completed"),
-            // location.reload(true)
+            location.reload(true)
         )
     }
 
@@ -117,4 +120,9 @@ $(document).ready(function() {
         }
     }
 
+    $("#overtime").on("click", function(event) {
+        //Allows user to press enter or click add button and prevents the form from trying to submit itself
+        event.preventDefault();  
+        $(".OT").show();
+    })
 });
