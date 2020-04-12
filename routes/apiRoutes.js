@@ -3,11 +3,28 @@ var bcrypt = require("bcrypt");
 var saltRounds = 10;
 
 module.exports = function (app) {
-  //db.user needs to equal "user" in defining sequelize var
-  //if it was "User" then it would be db.User
+  // Function that redirects to the login page if a
+  // session isn't stored yet (no one logged in).
+  const redirectLogin = (req, res, next) => {
+    if (!req.session.user) {
+      res.redirect("/");
+    } else {
+      next();
+    }
+  };
 
-  //login page: storing and comparing email and password,and redirecting to home page after login
-  app.post("/api/user", function (req, res) {
+  // Function that redirects to the calendar page if a
+  // session is stored (someone logged in).
+  const redirectCalendar = (req, res, next) => {
+    if (req.session.user) {
+      res.redirect("/calendar");
+    } else {
+      next();
+    }
+  };
+
+  //Log in post request
+  app.post("/api/user", redirectCalendar, (req, res) => {
     db.User.findOne({
       where: {
         name: req.body.name,
@@ -21,7 +38,14 @@ module.exports = function (app) {
           result
         ) {
           if (result) {
-            res.send(true);
+            req.session.user = User.name;
+            req.session.coach = User.coach;
+
+            console.log(req.session.user);
+            console.log(req.session.coach);
+
+            res.json(User);
+
             // res.redirect("/calendar");
           } else {
             console.log("incorrecct");
@@ -32,46 +56,52 @@ module.exports = function (app) {
       }
     });
   });
-  // console.log("this is from apiroutes.js " + dbUser);
-  // });
-  // });
 
-  app.post("/api/newUser", function (req, res) {
+  // Register new user post request
+  app.post("/api/newUser", (req, res, next) => {
     // db.User.create(req.body);
-    console.log("newUser: " + req.body.name);
-    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
-      db.User.create({
+    // console.log("newUser: " + req.body.name);
+    db.User.findOne({
+      where: {
         name: req.body.name,
-        password: hash,
-        coach: req.body.coach,
-        team: "Jaguars",
-      }).then(function (data) {
-        if (data) {
-          res.redirect("/");
-          // res.end();
-        }
-      });
+      },
+    }).then((data) => {
+      if (data) {
+        res.send(false);
+      } else {
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+          db.User.create({
+            name: req.body.name,
+            password: hash,
+            coach: req.body.coach,
+            team: "Jaguars",
+          }).then(function (data) {
+            if (data) {
+              res.redirect("/");
+            }
+          });
+        });
+      }
     });
-    // res.end();
   });
 
-  app.post("/api/newComment", function(req, res) {
+  //Create new comment
+  app.post("/api/newComment", function (req, res) {
     db.Comment.create(req.body);
     res.end();
   });
 
-
+  //Display all users
   app.get("/api/users", function (req, res) {
     db.User.findAll({}).then(function (data) {
       for (i = 0; i < data.length; i++) {
         console.log(data[i].date);
       }
-
       res.json(data);
     });
   });
 
-
+  //Display all comments
   app.get("/api/comments", function (req, res) {
     db.Comment.findAll({}).then(function (data) {
       for (i = 0; i < data.length; i++) {
@@ -85,38 +115,43 @@ module.exports = function (app) {
   app.get("/api/users/:name", function (req, res) {
     db.User.findOne({
       where: {
-        name: req.params.name
-      }
-    })
-      .then(function (dbUser) {
-        res.json(dbUser);
-        console.log("Find team name" + dbUser.team);
-      });
-  });
-
-
-  app.get("/api/examples", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
+        name: req.params.name,
+      },
+    }).then(function (dbUser) {
+      res.json(dbUser);
+      console.log("Find team name" + dbUser.team);
     });
   });
 
-  app.get("/api/games", function (req, res) {
+  // Get request for all games in db
+  app.get("/api/games", (req, res) => {
     db.Game.findAll({}).then(function (data) {
-      for (i = 0; i < data.length; i++) {
-        console.log(data[i].date);
-      }
+      // for (i = 0; i < data.length; i++) {
+      //   console.log(data[i].date);
+      // }
 
       res.json(data);
     });
   });
 
+  ///////////////////////////////////////////////
+  //EXAMPLES/////////////////////////////////////
+  ///////////////////////////////////////////////
+
   // Create a new example
-  app.post("/api/examples", function (req, res) {
-    db.Example.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // app.post("/api/examples", function (req, res) {
+  //   db.Example.create(req.body).then(function (dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
+
+  // Find all example
+  // app.get("/api/examples", function (req, res) {
+  //   db.Example.findAll({}).then(function (dbExamples) {
+  //     res.json(dbExamples);
+  //   });
+  // });
+
   // Create a new example
   // app.post("/api/examples", function(req, res) {
   //   db.Example.create(req.body).then(function(dbExample) {
