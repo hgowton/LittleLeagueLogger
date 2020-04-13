@@ -92,6 +92,26 @@ h4 {
   color: #f09;
 }
 
+#logout {
+  /* margin-top: 20px; */
+  width: 80px;
+  border-radius: 5px;
+}
+#welcome {
+  margin: 0 5px;
+}
+#userLogged {
+  margin: 0 8px;
+}
+
+/* section {
+  display: none;
+}
+
+#welcomeDiv {
+  display: none;
+} */
+
 h1#year {
   font-size: 2em;
   height: 29px;
