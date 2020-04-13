@@ -73,42 +73,4 @@ $(document).ready(function () {
       alert("Incorrect Coach Password");
     }
   });
-
-  $("input").click(function () {
-    var objectToChange = document.getElementById("#logo");
-    var pos = 0;
-    var startedMotion = setInterval(frame, 2);
-    function frame() {
-      if (pos == 360) {
-        clearInterval(startedMotion);
-      } else pos++;
-      $("#logo").css("transform", "rotateY(" + pos + "deg)");
-
-      // console.log(pos)
-    }
-    frame();
-  });
-
-  // $(document).on("click", ".submit", userLogin);
-  // var $email = $("#email").val().trim();
-
-  // function userLogin() {
-  // $.post(
-  //   "/api/user",
-  //   {
-  //     email: $("#email").val().trim(),
-  //     // password: $("#password").val().trim()
-  //   },
-  //   function(results) {
-  //     console.log(results);
-  //   });
-  // if (data !== null) {
-  //   window.location.href = "/public/calendar.html";
-  //   //look up javascript window
-  // } else {
-  //   alert("Email/password not found!");
-  // }
-  //   }
-  // );
-  // }
 });
