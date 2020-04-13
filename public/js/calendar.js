@@ -174,9 +174,10 @@ $(document).ready(function () {
 
   // 		}
   // 		},false);
+  let userLogged = localStorage.getItem("User");
+  $("#userLogged").text(userLogged);
 
   $.get("/api/games", function (data) {
-    // console.log(data);
     data.forEach((element) => {
       if (element.in_progress) {
         $(`#${element.date}`).attr("class", "inProgress");
@@ -198,6 +199,19 @@ $(document).ready(function () {
         $(`#${element.date}`).append(tag);
       } else {
         $(`#${element.date}`).attr("class", "incomplete");
+      }
+    });
+  });
+
+  //Logout Button
+  $("#logout").on("click", function () {
+    $.post("/logout", {}, (data) => {
+      console.log(data);
+      if (!data) {
+        window.location.href = "/calendar";
+      } else {
+        localStorage.clear();
+        window.location.href = "/";
       }
     });
   });

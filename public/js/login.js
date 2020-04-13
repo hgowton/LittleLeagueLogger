@@ -8,11 +8,13 @@ $(document).ready(function () {
         name: $("#email").val().trim(),
         password: $("#password").val().trim(),
       },
-      function (result) {
-        console.log(result);
-        if (result) {
+      function (data) {
+        if (typeof data === "object") {
           alert("Login successful!");
-          // window.location.href = "/calendar";
+          // console.log(data);
+          localStorage.setItem("User", data.name);
+
+          window.location.href = "/calendar";
         } else {
           alert("Incorrect email/password");
         }
@@ -35,8 +37,6 @@ $(document).ready(function () {
   $("#createUserAccount").on("click", function (event) {
     event.preventDefault();
 
-    console.log("create account button");
-
     let emailInput = $("#createEmail").val().trim();
     let passwordInput = $("#createPassword").val().trim();
     let coachVal = document.getElementById("checkBox").checked;
@@ -47,12 +47,17 @@ $(document).ready(function () {
       coach: coachVal,
       team: "Jaguars",
     };
-    console.log(newUser);
-    $.post("/api/newUser", newUser).then(function () {
-      // bcrypt.hash(newUser.password, 10, function(err, hash) {
-      //   console.log(newUser.password);
-      // })
-      alert("New user account created!");
+
+    // console.log(newUser);
+    $.post("/api/newUser", newUser).then(function (data) {
+      console.log(data);
+      if (!data) {
+        // $("#myModal").modal("hide");
+        alert("Account already exists");
+      } else {
+        $("#myModal").modal("hide");
+        alert("New user account created!");
+      }
     });
   });
 
