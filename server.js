@@ -15,6 +15,8 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.set("trust proxy", 1);
+
 //Session
 app.use(
   session({
