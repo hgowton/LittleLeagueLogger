@@ -1,20 +1,13 @@
 {
   "development": {
-    "username": "test",
-    "password": "",
-    "database": "llldb",
-    "host": "127.0.0.1",
+    "username": "shh70sod13wq0hoi",
+    "password": "jlo3k68o27bvc3pd",
+    "database": "o7z6bniazaxl4tnz",
+    "host": "tyduzbv3ggpf15sx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   },
-  "test": {
-    "username": "root",
-    "password": "B0otcamp!",
-    "database": "llldb",
-    "host": "127.0.0.1",
-    "port": 3306,
-    "dialect": "mysql"
-  },
+ 
   "production": {
     "username": "shh70sod13wq0hoi",
     "password": "jlo3k68o27bvc3pd",

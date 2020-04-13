@@ -187,6 +187,9 @@ $(document).ready(function () {
 
                         $.post("/api/newComment", newEntry).then(function () {
                             alert("new comment was created!")
+                            location.reload();
+                            $("#getName").text("");
+                            $("#message").text("");
                         })
 
                     }

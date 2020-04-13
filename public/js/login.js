@@ -12,7 +12,7 @@ $(document).ready(function () {
         console.log(result);
         if (result) {
           alert("Login successful!");
-          // window.location.href = "/calendar";
+          window.location.href = "/calendar";
         } else {
           alert("Incorrect email/password");
         }
