@@ -55,7 +55,7 @@ $(document).ready(function () {
 
   function createDay(month, counter, order, monthDiv) {
     //if(order == 8){order = -1}
-    var day = document.createElement("div");
+    var day = document.createElement("div"); //changed to button
     if (month === thisMonth && counter === today) {
       day.setAttribute("class", "to day");
     } else {
@@ -72,6 +72,7 @@ $(document).ready(function () {
       newMonth = "0" + (month + 1);
     }
     day.setAttribute("id", "2020" + "-" + newMonth + "-" + newDay);
+    // day.setAttribute("value", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
     monthDiv.appendChild(day);
 
@@ -199,6 +200,6 @@ $(document).ready(function () {
 
     
     
-    window.location.reload(false);
+    window.location.reload(true);
   });
 });
