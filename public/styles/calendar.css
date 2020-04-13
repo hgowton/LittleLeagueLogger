@@ -19,7 +19,7 @@ html {
 
 .calendar,
 section {
-  max-width: 50rem;
+  max-width: 75rem;
 }
 
 .day {
@@ -34,7 +34,7 @@ section {
 }
 
 .day:nth-of-type(7n + 1) {
-  color: #f09;
+  color: #0053A0;
 }
 
 .to.day {
@@ -89,28 +89,8 @@ section {
 h4 {
   font-size: 1em;
   text-transform: uppercase;
-  color: #f09;
+  color: #EE3A43;
 }
-
-#logout {
-  /* margin-top: 20px; */
-  width: 80px;
-  border-radius: 5px;
-}
-#welcome {
-  margin: 0 5px;
-}
-#userLogged {
-  margin: 0 8px;
-}
-
-/* section {
-  display: none;
-}
-
-#welcomeDiv {
-  display: none;
-} */
 
 h1#year {
   font-size: 2em;
@@ -236,3 +216,114 @@ script {
     opacity: 0;
   }
 }
+
+/* Color key */
+#gameDay {
+  font-size: 1.5em;
+  color: white;
+  background: rgb(0, 217, 255);
+  margin: 10%;
+  padding: 0 3%;
+  border-radius: 5%;
+  width: 33%;
+}
+
+#inProgress {
+  font-size: 1.5em;
+  color: white;
+  background: rgb(0, 255, 0);
+  margin: 10%;
+  padding: 0 3%;
+  border-radius: 5%;
+  width: 33%;
+}
+
+#incomplete {
+  font-size: 1.5em;
+  color: white;
+  background: rgb(255, 157, 0);
+  margin: 10%;
+  padding: 0 3%;
+  border-radius: 5%;
+  width: 33%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-dialog {
+  position: relative;
+  width: 33.33%;
+  /* margin: .5rem; */
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  margin: 5% auto;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%;
+  font-size: 28px;
+}
+
+.modal-form{
+  width: 90%;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+}
+
+#createGame{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+}
+
+label {
+  font-size: 24px;
+  margin: 2% 2%;
+} 
+
+input {
+  font-size: 20px;
+  margin: 2% 0;
+} 
+

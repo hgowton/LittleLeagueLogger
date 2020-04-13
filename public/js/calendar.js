@@ -20,8 +20,6 @@ $(document).ready(function () {
   document.querySelector("#year").innerHTML = year;
   var thisMonth = d.getMonth(); // 0 - 11
   var today = d.getDate(); // 1 -31
-  //var nthday = d.getDay();// 0 - 7
-  // var daysOfTheMonthDiv = document.querySelectorAll(".daysOfTheMonth");
 
   for (var month = 0; month < 12; month++) {
     createCalendar(month);
@@ -76,10 +74,7 @@ $(document).ready(function () {
     day.setAttribute("id", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
     monthDiv.appendChild(day);
-    /*
-	<div class="monthDiv">
-	<div class="day">5</div>
-	*/
+
   }
 
   function createMonthHeader(month) {
@@ -102,78 +97,19 @@ $(document).ready(function () {
       monthDiv.appendChild(hday);
     }
 
-    return monthDiv;
+    return monthDiv;		
 
-    /*
-	<div class="month">
-		
-	<div class="monthHeader">
-	<div class="day OfWeek">Sun</div>
-	<div class="day OfWeek">Mon</div>
-	<div class="day OfWeek">Tue</div>
-	<div class="day OfWeek">Wed</div>
-	<div class="day OfWeek">Thu</div>
-	<div class="day OfWeek">Fri</div>
-	<div class="day OfWeek">Sat</div>
-	</div>
-			
-	<div class="daysOfTheMonth">
-	*/
   }
 
   function daysInMonth(year, month) {
     return new Date(year, month + 1, 0).getDate(); //29/03/2016 (month + 1)
   }
 
-  /*function leapYear(year){
-		return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
-  }
-  
-	function getNextMonth(month){
-	if (month == 11) {
-			var nextMonth = 0;
-	} else {
-			var nextMonth = month+1;
-	}
-	return nextMonth;
-	}
-	*/
-  // function getMonthName(month) {
-  //   return monthNamesRy[month];
-  // }
-  // function getDayName(day) {
-  //   return daysOfTheWeekRy[day];
-  // }
-
   function getFirstDayOfTheMonth(y, m) {
     var firstDay = new Date(y, m, 1);
     return firstDay.getDay();
   }
-  // function getLastDayOfTheMonth(y, m) {
-  //   var lastDay = new Date(y, m + 1, 0);
-  //   return lastDay.getDay();
-  // }
 
-  // the popp up
-
-  // var calendar = document.querySelector(".calendar");
-  // var cloneCont = document.querySelector(".cloneCont");
-  // var requestId = false;
-  // 	calendar.addEventListener("click", function(e){
-  // 				if(this.querySelector(".cloneCont")){
-  // 			this.removeChild(this.querySelector(".cloneCont"));}
-
-  // 				else if(e.target.parentNode.className =='month' ){
-
-  // 		var monthClone = e.target.parentNode.cloneNode(true);
-  // 		monthClone.className += " cloneMonth";
-  // 		var cloneCont = document.createElement("div");
-  // 		cloneCont.className += " cloneCont";
-  // 		cloneCont.appendChild(monthClone);
-  // 		this.appendChild(cloneCont);
-
-  // 		}
-  // 		},false);
   let userLogged = localStorage.getItem("User");
   $("#userLogged").text(userLogged);
 
@@ -214,5 +150,55 @@ $(document).ready(function () {
         window.location.href = "/";
       }
     });
+  });
+  
+  // Modal Code //
+  var modal = $("#myModal2")
+
+  // Add Game shows modal
+  $("#add").on("click", function () {
+    $("#myModal2").css("display", function(){
+      return "block"
+    });
+  });
+
+  // closes modal
+  
+  $(".close").on("click", function(){
+    $("#myModal2").css("display", function(){
+      return "none"
+    });
+  });
+
+  $("#addGame").on("click", function (event){
+    event.preventDefault();
+
+    console.log("create game button");
+
+    var homeInput = $("#homeTeam").val().trim();
+    var awayInput = $("#awayTeam").val().trim();
+    var location = $("#location").val().trim();
+    var date = $("#date").val();
+
+    var newGame ={
+      home_team: homeInput,
+      away_team: awayInput, 
+      location: location,
+      date: date
+    }
+
+    console.log(newGame);
+
+    $.post("/api/newGame", newGame).then(function () {
+      alert("New game added!");
+    });
+
+    $("#myModal2").css("display",function(){
+      return "none"
+    });
+
+    
+    
+    window.location.reload(false);
   });
 });

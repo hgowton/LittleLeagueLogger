@@ -134,6 +134,20 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/newGame", function(req, res) {
+    console.log(req.body);
+    db.Game.create({
+      home_team: req.body.home_team,
+      away_team: req.body.away_team,
+      location: req.body.location,
+      date: req.body.date
+    }).then(function(data) {
+      if (data) {
+        res.redirect("/calendar");
+      }
+    });
+  });
+  
   ///////////////////////////////////////////////
   //EXAMPLES/////////////////////////////////////
   ///////////////////////////////////////////////
