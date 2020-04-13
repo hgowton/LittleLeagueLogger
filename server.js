@@ -1,5 +1,4 @@
 var express = require("express");
-var exphbs = require("express-handlebars");
 var session = require("express-session");
 var bcrypt = require("bcrypt");
 
