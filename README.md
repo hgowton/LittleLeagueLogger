@@ -7,7 +7,7 @@ An MVP based application for a baseball team.  Keep all team members and their f
   * Node.js
      * Express
      * Express-Sessions
-     * Passport
+     * bcrypt
   * HTML and CSS with Bootstrap
 
 ## App Use
