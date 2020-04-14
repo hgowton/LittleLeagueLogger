@@ -28,7 +28,11 @@ module.exports = function (app) {
 
   // Load calendar page
   app.get("/calendar", redirectLogin, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/calendar.html"));
+    if (!req.session.coach) {
+      res.sendFile(path.join(__dirname, "../public/calendar.html"));
+    } else {
+      res.sendFile(path.join(__dirname, "../public/calendar-coach.html"));
+    }
   });
 
   //Load game score page
