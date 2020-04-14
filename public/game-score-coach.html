@@ -21,8 +21,10 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-md-12" id="endGame" style="display: none"></div>
+      </div>
+      <div class="row">
         <div class="col-md-12 info" id="date">Date and Time</div>
-        <div class="col-md-2"></div>
       </div>
       <div class="row">
         <div class="col-md-6 info" id="h_name">Home Team:</div>
@@ -99,7 +101,14 @@
     </div>
   </div>
 
-<!--Coach Update Game View -->
+  <!--Coach Update Game View -->
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-11-md"><button type="submit" class="btn btn-success submit" id="fixGame">Fix Game Scores</button></div>
+    </div>
+  </div>
+
 <div class="container main-sectionC" id="coachInput" style="display: none">
     <div class="row">
         <div class="col-md-12 info" id="message">Update the score for each inning by clicking on the inning and team. 
@@ -109,7 +118,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-2 inning"></div>
             <div class="col-md-1 inning">1</div>
             <div class="col-md-1 inning">2</div>
             <div class="col-md-1 inning">3</div>
@@ -158,10 +167,10 @@
               <div class="col-md-1 runsC" id="v_runs"></div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6">
-            <button type="submit" id="overtime" class="btn btn-primary">Overtime</button>
-            <button type="submit" id="gameOver" class="btn btn-primary">Game Over</button></div>
+        <div class="row" id="coachUpdates">
+          <div class="col-md-6" id="coachButtons">
+            <button type="submit" id="overtime" class="btn btn-success">Overtime</button>
+            <button type="submit" id="gameOver" class="btn btn-success">Game Over</button></div>
           <div class="col-md-6">
             <form id="form-date">
               <div class="form-group">
