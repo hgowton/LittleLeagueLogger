@@ -230,9 +230,9 @@ $(document).ready(function () {
       console.log(data);
       // if game doesnt exist, then create the game
       if (!data){
-        alert("Game already exists!");
-      } 
         alert("New game added!");
+      } 
+      alert("Game already exists!");
       
     }); 
     // reloads the window with new info from server
