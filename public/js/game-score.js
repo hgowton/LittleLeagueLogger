@@ -45,9 +45,9 @@ $(document).ready(function () {
 
             $("#h_runs").text(h_runs);
             $("#v_runs").text(v_runs);
-            
+
             //shows overtime fields if 
-            if (gameData.h_overtime >=1 || gameData.o_overtime >=1) {
+            if (gameData.h_overtime >= 1 || gameData.o_overtime >= 1) {
                 $(".OT").show();
             }
         })
@@ -187,9 +187,6 @@ $(document).ready(function () {
 
                         $.post("/api/newComment", newEntry).then(function () {
                             alert("new comment was created!")
-                            location.reload();
-                            $("#getName").text("");
-                            $("#message").text("");
                         })
 
                     }
@@ -276,11 +273,11 @@ $(document).ready(function () {
     }
 
     //reschedule date of an existing game
-    $("#changeDate").on("click", function(event) {
+    $("#changeDate").on("click", function (event) {
         //Allows user to press enter or click add button and prevents the form from trying to submit itself
         event.preventDefault();
         var dateInput = $("#newDate");
-        
+
         var updateDate = {
             "date": dateInput.val().trim()
         };
@@ -288,7 +285,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: "PUT",
-            url:`/api/games/${gameID}`,
+            url: `/api/games/${gameID}`,
             data: updateDate
         }).then(
             console.log("date updated in scores table")
@@ -297,7 +294,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: "PUT",
-            url:`/api/scores/${gameID}`,
+            url: `/api/scores/${gameID}`,
             data: updateDate
         }).then(
             console.log("date updated in games table")
@@ -307,9 +304,9 @@ $(document).ready(function () {
 
     })
 
-    $("#overtime").on("click", function(event) {
+    $("#overtime").on("click", function (event) {
         //Allows user to press enter or click add button and prevents the form from trying to submit itself
-        event.preventDefault();  
+        event.preventDefault();
         $(".OT").show();
     })
 });

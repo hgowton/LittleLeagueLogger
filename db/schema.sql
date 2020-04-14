@@ -4,7 +4,7 @@ CREATE DATABASE llldb;
 USE llldb;
 
 
-CREATE TABLE Users
+CREATE TABLE users
 (
         id int NOT NULL
         AUTO_INCREMENT,
@@ -21,7 +21,7 @@ PRIMARY KEY
 );
 
 
-        CREATE TABLE Games
+        CREATE TABLE games
         (
                 game_id int NOT NULL
                 AUTO_INCREMENT,
@@ -42,7 +42,7 @@ PRIMARY KEY
 );
 
 
-                CREATE TABLE Scores
+                CREATE TABLE scores
                 (
                         game_id int
                         AUTO_INCREMENT NOT NULL,
@@ -83,19 +83,19 @@ PRIMARY KEY
 );
 
 
-CREATE TABLE Comments
-(
-        comment_id int NOT NULL
-        AUTO_INCREMENT,
+                        CREATE TABLE comments
+                        (
+                                comment_id int NOT NULL
+                                AUTO_INCREMENT,
 
 comment varchar
-        (500) NOT NULL,
+                                (500) NOT NULL,
 date DATE
 NOT NULL,
 team varchar
-        (100) NOT NULL,
+                                (100) NOT NULL,
 name varchar
-        (100) NOT NULL,
+                                (100) NOT NULL,
 PRIMARY KEY
-        (comment_id)
+                                (comment_id)
 );
