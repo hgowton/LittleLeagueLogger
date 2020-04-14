@@ -28,29 +28,24 @@
       <button id="add">Add/Delete a Game</button>
       <div class="colorKey">
         <div id="gameDay">Completed</div>
-        <div id="inProgress">In-progress</div>
+        <div id="inProgress">In-Progress</div>
         <div id="incomplete">Upcoming</div>
+        <div id="today">Today's Date</div>
       </div>
       <!-- MODAL POPUP -->
-      <div
-        class="modal fade"
-        id="myModal2"
-        role="dialog"        
-        >
+      <div class="modal fade" id="myModal2" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="staticBackdropLabel">
                 Add/Delete a Game
               </h4>
-              <button
-                type="button"
-                >
+              <button type="button">
                 <span class="close">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <div class="modal-form"id="formBox">
+              <div class="modal-form" id="formBox">
                 <form id="createGame">
                   <div class="form-group">
                     <label for="homeTeam">Home Team</label>
@@ -78,32 +73,33 @@
                       id="location"
                       required
                     />
-                  </div><div class="form-group">
+                  </div>
+                  <div class="form-group">
                     <label for="date">Date</label>
                     <input
                       type="date"
                       class="form-control"
                       id="date"
-                      min="2020-03-01" 
+                      min="2020-03-01"
                       max="2020-09-30"
                       required
                     />
                   </div>
                   <div class="modal-footer justify-content-around">
-                    <button 
-                      id = "addGame" 
-                      type="submit" 
+                    <button
+                      id="addGame"
+                      type="submit"
                       class="btn btn-primary"
                       data-dismiss="modal"
-                      >
+                    >
                       Add
                     </button>
-                    <button 
-                      id = "deleteGame" 
-                      type="submit" 
+                    <button
+                      id="deleteGame"
+                      type="submit"
                       class="btn btn-primary"
                       data-dismiss="modal"
-                      >
+                    >
                       Delete
                     </button>
                   </div>
