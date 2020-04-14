@@ -7,15 +7,15 @@ $(document).ready(function () {
     //creates game ID for use with database
     var gameID = parseInt(parsedURL.searchParams.get("id"));
 
-
     //Event listeners for editing home and away scores
     $(document).on("focus", ".update-score", editScore);
     $(document).on("keyup", ".update-score", finishUpdate);
     $(document).on("click", "#gameOver", gameOver);
+    $(document).on("click", "#fixGame", fixGame);
 
     //Get information from games and scores tables
-    getInfo();
     scoreInfo();
+    // scoreInfo();
 
     //this function grabs score info from llldb
     function scoreInfo() {
@@ -45,23 +45,22 @@ $(document).ready(function () {
 
             $("#h_runs").text(h_runs);
             $("#v_runs").text(v_runs);
+
+            var winner = "";
+            if(h_runs > v_runs) {
+                winner="home"
+            } else {
+                winner="visit"
+            }
             
             //shows overtime fields if 
             if (gameData.h_overtime >=1 || gameData.o_overtime >=1) {
                 $(".OT").show();
             }
+            getInfo(winner)
         })
     }
 
-
-    function getInfo() {
-        $.ajax({ url: "/api/games/", method: "GET" }).then(function (tableData) {
-            var gameData = tableData[gamID]
-            $("#h_name").text("Home Team: " + gameData.home_team);
-            $("#v_name").text("Visiting Team: " + gameData.away_team)
-            $("#loc").text("Location: " + gameData.location);
-        });
-    }
 
     function getComments() {
 
@@ -210,7 +209,7 @@ $(document).ready(function () {
 
 
     //this function grabs game info from llldb
-    function getInfo() {
+    function getInfo(winner) {
         $.get("/api/games/", function (data) {
             var gameData = data[gamID]
             $("#h_name").text("Home Team: " + gameData.home_team)
@@ -220,7 +219,20 @@ $(document).ready(function () {
             $("#loc").text("Location: " + gameData.location)
             if (gameData.in_progress == true) {
                 $("#coachInput").show();
+                $("#fixGame").hide();
+            } else {
+                $("#endGame").show();
             }
+
+            var wins = "";
+            if (winner === "home") {
+                wins = gameData.home_team;
+            } else {
+                wins = gameData.away_team;
+            }
+
+            $("#endGame").text("Final Score: Winner is " + wins + "!")
+            console.log("wins" + wins)
         })
     }
 
@@ -271,6 +283,21 @@ $(document).ready(function () {
             location.reload(true)
         )
     }
+
+        //switches game from inprogress to over
+        function fixGame() {
+            var updatedGame = {
+                "in_progress": 1,
+                "completed": 0
+            };
+            $.ajax({
+                method: "PUT",
+                url: `/api/games/${gameID}`,
+                data: updatedGame
+            }).then(
+                location.reload(true)
+            )
+        }
 
     //reschedule date of an existing game
     $("#changeDate").on("click", function(event) {
