@@ -154,8 +154,6 @@ $(document).ready(function () {
   });
   
   // Modal Code //
-  var modal = $("#myModal2")
-
   // Add Game shows modal
   $("#add").on("click", function () {
     $("#myModal2").css("display", function(){
@@ -164,23 +162,25 @@ $(document).ready(function () {
   });
 
   // closes modal
-  
   $(".close").on("click", function(){
     $("#myModal2").css("display", function(){
       return "none"
     });
   });
 
+  // function to add a game when clicked
   $("#addGame").on("click", function (event){
     event.preventDefault();
 
     console.log("create game button");
 
+    // grabs user input from modal
     var homeInput = $("#homeTeam").val().trim();
     var awayInput = $("#awayTeam").val().trim();
     var location = $("#location").val().trim();
     var date = $("#date").val();
 
+    // initializes var with user input
     var newGame ={
       home_team: homeInput,
       away_team: awayInput, 
@@ -190,16 +190,56 @@ $(document).ready(function () {
 
     console.log(newGame);
 
-    $.post("/api/newGame", newGame).then(function () {
-      alert("New game added!");
-    });
+    // post request to apiRoutes
+    $.post("/api/newGame", newGame).then(function(data) {
+      console.log(data);
+      // if game doesnt exist, then create the game
+      if (!data){
+        alert("Game already exists!");
+      } 
+        alert("New game added!");
+      
+    }); 
+    // reloads the window with new info from server
+    window.location.reload(true);
+  });
 
-    $("#myModal2").css("display",function(){
-      return "none"
-    });
+  // function to delete a game when clicked
+  $("#deleteGame").on("click", function (event){
+    event.preventDefault();
 
-    
-    
+    console.log("delete game button");
+
+    // grabs user input from modal
+    var homeInput = $("#homeTeam").val().trim();
+    var awayInput = $("#awayTeam").val().trim();
+    var location = $("#location").val().trim();
+    var date = $("#date").val();
+
+    // initializes a var with user input
+    var deleteGame ={
+      home_team: homeInput,
+      away_team: awayInput, 
+      location: location,
+      date: date
+    }
+
+    console.log(deleteGame);
+
+    // post request to apiRoutes
+    $.post("/api/deleteGame", deleteGame).then(function (data) {
+      console.log(data);
+      // if no data returned, then no game to delete
+      if (!data){
+        alert("Game does not exist... please try again.")
+      } else { 
+        $("#myModal2").css("display",function(){
+          return "none"
+        });
+        setTimeOut(function(){alert("Game deleted!");}, 5000);
+      }
+    }); 
+    // reloads the page with new info from server
     window.location.reload(true);
   });
 });

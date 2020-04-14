@@ -25,7 +25,7 @@
       </div>
       <h1 id="year"></h1>
       <div class="calendar"></div>
-      <button id="add">Add a Game</button>
+      <button id="add">Add/Delete a Game</button>
       <div class="colorKey">
         <div id="gameDay">Game Day</div>
         <div id="inProgress">Game In-progress</div>
@@ -41,7 +41,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="staticBackdropLabel">
-                Add a Game
+                Add/Delete a Game
               </h4>
               <button
                 type="button"
@@ -104,6 +104,14 @@
                       data-dismiss="modal"
                       >
                       Add
+                    </button>
+                    <button 
+                      id = "deleteGame" 
+                      type="submit" 
+                      class="btn btn-primary"
+                      data-dismiss="modal"
+                      >
+                      Delete
                     </button>
                   </div>
                 </form>

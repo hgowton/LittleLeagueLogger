@@ -49,7 +49,7 @@ module.exports = function (app) {
   });
 
   //Catches everything else and redirects to login
-  app.get("*", function (req, res) {
-    res.redirect("/");
-  });
+  // app.get("*", function (req, res) {
+  //   res.redirect("/");
+  // });
 };
