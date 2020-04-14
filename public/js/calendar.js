@@ -114,28 +114,62 @@ $(document).ready(function () {
   let userLogged = localStorage.getItem("User");
   $("#userLogged").text(userLogged);
 
-  $.get("/api/games", function (data) {
-    data.forEach((element) => {
-      if (element.in_progress) {
-        $(`#${element.date}`).attr("class", "inProgress");
-        let dateNum = $(`#${element.date}`).text();
-        $(`#${element.date}`).empty();
-        var tag = $("<a>");
-        tag.attr("href", `game-score.html?id=${element.game_id}`);
-        tag.attr("class", "inProgress");
-        tag.text(dateNum);
-        $(`#${element.date}`).append(tag);
-      } else if (element.completed) {
-        $(`#${element.date}`).attr("class", "gameDay");
-        let dateNum = $(`#${element.date}`).text();
-        $(`#${element.date}`).empty();
-        var tag = $("<a>");
-        tag.attr("href", `game-score.html?id=${element.game_id}`);
-        tag.attr("class", "gameDay");
-        tag.text(dateNum);
-        $(`#${element.date}`).append(tag);
+  $.post("/api/coach", {}, function (data) {
+    var coach;
+    console.log(data);
+
+    coach = data;
+
+    $.get("/api/games", function (data) {
+      console.log(coach);
+      if (coach) {
+        data.forEach((element) => {
+          if (element.in_progress) {
+            $(`#${element.date}`).attr("class", "inProgress");
+            let dateNum = $(`#${element.date}`).text();
+            $(`#${element.date}`).empty();
+            var tag = $("<a>");
+            tag.attr("href", `game-score-coach.html?id=${element.game_id}`);
+            tag.attr("class", "inProgress");
+            tag.text(dateNum);
+            $(`#${element.date}`).append(tag);
+          } else if (element.completed) {
+            $(`#${element.date}`).attr("class", "gameDay");
+            let dateNum = $(`#${element.date}`).text();
+            $(`#${element.date}`).empty();
+            var tag = $("<a>");
+            tag.attr("href", `game-score-coach.html?id=${element.game_id}`);
+            tag.attr("class", "gameDay");
+            tag.text(dateNum);
+            $(`#${element.date}`).append(tag);
+          } else {
+            $(`#${element.date}`).attr("class", "incomplete");
+          }
+        });
       } else {
-        $(`#${element.date}`).attr("class", "incomplete");
+        data.forEach((element) => {
+          if (element.in_progress) {
+            $(`#${element.date}`).attr("class", "inProgress");
+            let dateNum = $(`#${element.date}`).text();
+            $(`#${element.date}`).empty();
+            var tag = $("<a>");
+            tag.attr("href", `game-score.html?id=${element.game_id}`);
+            tag.attr("class", "inProgress");
+            tag.text(dateNum);
+            $(`#${element.date}`).append(tag);
+          } else if (element.completed) {
+            $(`#${element.date}`).attr("class", "gameDay");
+            let dateNum = $(`#${element.date}`).text();
+            $(`#${element.date}`).empty();
+            var tag = $("<a>");
+            tag.attr("href", `game-score.html?id=${element.game_id}`);
+            tag.attr("class", "gameDay");
+            tag.text(dateNum);
+            $(`#${element.date}`).append(tag);
+          } else {
+            $(`#${element.date}`).attr("class", "incomplete");
+          }
+        });
       }
     });
   });
@@ -148,6 +182,7 @@ $(document).ready(function () {
         window.location.href = "/calendar";
       } else {
         localStorage.clear();
+        location.reload();
         window.location.href = "/";
       }
     });
