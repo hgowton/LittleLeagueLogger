@@ -28,12 +28,20 @@ module.exports = function (app) {
 
   // Load calendar page
   app.get("/calendar", redirectLogin, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/calendar.html"));
+    if (!req.session.coach) {
+      res.sendFile(path.join(__dirname, "../public/calendar.html"));
+    } else {
+      res.sendFile(path.join(__dirname, "../public/calendar-coach.html"));
+    }
   });
 
-  // Load game score page
+  //Load game score page
   app.get("/game-score", redirectLogin, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/game-score.html"));
+    if (!req.session.coach) {
+      res.sendFile(path.join(__dirname, "../public/game-score.html"));
+    } else {
+      res.sendFile(path.join(__dirname, "../public/game-score-coach.html"));
+    }
   });
 
   //Post request to logout and end session
@@ -49,7 +57,7 @@ module.exports = function (app) {
   });
 
   //Catches everything else and redirects to login
-  app.get("*", function (req, res) {
-    res.redirect("/");
-  });
+  // app.get("*", function (req, res) {
+  //   res.redirect("/");
+  // });
 };

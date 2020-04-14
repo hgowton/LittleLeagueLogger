@@ -57,6 +57,13 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/coach", (req, res) => {
+    db.User.findAll({}).then(function (User) {
+      console.log(req.session.coach);
+      res.send(req.session.coach);
+    });
+  });
+
   // Register new user post request
   app.post("/api/newUser", (req, res, next) => {
     // db.User.create(req.body);
@@ -134,6 +141,57 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/newGame", function(req, res) {
+    console.log(req.body);
+    db.Game.findOne({
+      where: {
+        home_team: req.body.home_team,
+        away_team: req.body.away_team,
+        location: req.body.location,
+        date: req.body.date
+      }
+    }).then(function(Game){
+      if(Game){
+        res.send(false);
+      } else {
+        db.Game.create({
+          home_team: req.body.home_team,
+          away_team: req.body.away_team,
+          location: req.body.location,
+          date: req.body.date
+        }).then(function(data) {
+          // if (data) {
+          //   res.redirect("/calendar");
+          // }
+        });
+      }
+    });
+  });
+
+  app.post("/api/deleteGame", function(req, res) {
+    console.log(req.body);
+    db.Game.findOne({
+      where: {
+        date: req.body.date
+      } 
+    }).then(function(Game){
+      console.log(Game);
+      if(!Game){
+        res.send(false);
+      } else {
+        db.Game.destroy({ 
+          where: {
+            date: req.body.date
+          } 
+        }).then(function(data) {
+          // if (data) {
+          //   res.redirect("/calendar");
+          // }
+        });
+      }
+    })
+  });
+  
   ///////////////////////////////////////////////
   //EXAMPLES/////////////////////////////////////
   ///////////////////////////////////////////////
