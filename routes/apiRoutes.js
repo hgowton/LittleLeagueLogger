@@ -57,6 +57,13 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/coach", (req, res) => {
+    db.User.findAll({}).then(function (User) {
+      console.log(req.session.coach);
+      res.send(req.session.coach);
+    });
+  });
+
   // Register new user post request
   app.post("/api/newUser", (req, res, next) => {
     // db.User.create(req.body);

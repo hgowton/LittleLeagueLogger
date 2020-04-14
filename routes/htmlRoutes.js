@@ -31,9 +31,13 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/calendar.html"));
   });
 
-  // Load game score page
+  //Load game score page
   app.get("/game-score", redirectLogin, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/game-score.html"));
+    if (!req.session.coach) {
+      res.sendFile(path.join(__dirname, "../public/game-score.html"));
+    } else {
+      res.sendFile(path.join(__dirname, "../public/game-score-coach.html"));
+    }
   });
 
   //Post request to logout and end session
