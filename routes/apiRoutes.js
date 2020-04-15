@@ -141,57 +141,61 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/newGame", function(req, res) {
+  app.post("/api/newGame", function (req, res) {
     console.log(req.body);
-    db.Game.findOne({
-      where: {
-        home_team: req.body.home_team,
-        away_team: req.body.away_team,
-        location: req.body.location,
-        date: req.body.date
-      }
-    }).then(function(Game){
-      if(Game){
-        res.send(false);
-      } else {
-        db.Game.create({
+    if (
+      req.body.home_team === "" ||
+      req.body.away_team === "" ||
+      req.body.location === ""
+    ) {
+      res.send("Please Fill Out All Fields");
+    } else {
+      db.Game.findOne({
+        where: {
           home_team: req.body.home_team,
           away_team: req.body.away_team,
           location: req.body.location,
-          date: req.body.date
-        }).then(function(data) {
-          // if (data) {
-          //   res.redirect("/calendar");
-          // }
+          date: req.body.date,
+        },
+      }).then(function (Game) {
+        if (Game) {
+          res.send("Game Already exists");
+        } else {
+          db.Game.create({
+            home_team: req.body.home_team,
+            away_team: req.body.away_team,
+            location: req.body.location,
+            date: req.body.date,
+          }).then(function (data) {
+            res.send("Game Created!");
+          });
+        }
+      });
+    }
+  });
+
+  app.post("/api/deleteGame", function (req, res) {
+    console.log(req.body);
+    db.Game.findOne({
+      where: {
+        date: req.body.date,
+      },
+    }).then(function (Game) {
+      console.log(Game);
+      if (!Game) {
+        res.send("Game Doesn't Exist");
+      } else {
+        db.Game.destroy({
+          where: {
+            date: req.body.date,
+          },
+        }).then(function (data) {
+          res.send("Game Deleted");
         });
       }
     });
   });
 
-  app.post("/api/deleteGame", function(req, res) {
-    console.log(req.body);
-    db.Game.findOne({
-      where: {
-        date: req.body.date
-      } 
-    }).then(function(Game){
-      console.log(Game);
-      if(!Game){
-        res.send(false);
-      } else {
-        db.Game.destroy({ 
-          where: {
-            date: req.body.date
-          } 
-        }).then(function(data) {
-          // if (data) {
-          //   res.redirect("/calendar");
-          // }
-        });
-      }
-    })
-  });
-  
   ///////////////////////////////////////////////
   //EXAMPLES/////////////////////////////////////
   ///////////////////////////////////////////////

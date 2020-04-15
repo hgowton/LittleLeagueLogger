@@ -75,7 +75,6 @@ $(document).ready(function () {
     // day.setAttribute("value", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
     monthDiv.appendChild(day);
-
   }
 
   function createMonthHeader(month) {
@@ -98,8 +97,7 @@ $(document).ready(function () {
       monthDiv.appendChild(hday);
     }
 
-    return monthDiv;		
-
+    return monthDiv;
   }
 
   function daysInMonth(year, month) {
@@ -187,26 +185,24 @@ $(document).ready(function () {
       }
     });
   });
-  
+
   // Modal Code //
   // Add Game shows modal
   $("#add").on("click", function () {
-    $("#myModal2").css("display", function(){
-      return "block"
+    $("#myModal2").css("display", function () {
+      return "block";
     });
   });
 
   // closes modal
-  $(".close").on("click", function(){
-    $("#myModal2").css("display", function(){
-      return "none"
+  $(".close").on("click", function () {
+    $("#myModal2").css("display", function () {
+      return "none";
     });
   });
 
   // function to add a game when clicked
-  $("#addGame").on("click", function (event){
-    event.preventDefault();
-
+  $("#addGame").on("click", function (event) {
     console.log("create game button");
 
     // grabs user input from modal
@@ -216,33 +212,24 @@ $(document).ready(function () {
     var date = $("#date").val();
 
     // initializes var with user input
-    var newGame ={
+    var newGame = {
       home_team: homeInput,
-      away_team: awayInput, 
+      away_team: awayInput,
       location: location,
-      date: date
-    }
+      date: date,
+    };
 
     console.log(newGame);
 
     // post request to apiRoutes
-    $.post("/api/newGame", newGame).then(function(data) {
+    $.post("/api/newGame", newGame).then(function (data) {
       console.log(data);
-      // if game doesnt exist, then create the game
-      if (!data){
-        alert("New game added!");
-      } 
-      alert("Game already exists!");
-      
-    }); 
-    // reloads the window with new info from server
-    window.location.reload(true);
+      alert(data);
+    });
   });
 
   // function to delete a game when clicked
-  $("#deleteGame").on("click", function (event){
-    event.preventDefault();
-
+  $("#deleteGame").on("click", function (event) {
     console.log("delete game button");
 
     // grabs user input from modal
@@ -252,29 +239,19 @@ $(document).ready(function () {
     var date = $("#date").val();
 
     // initializes a var with user input
-    var deleteGame ={
+    var deleteGame = {
       home_team: homeInput,
-      away_team: awayInput, 
+      away_team: awayInput,
       location: location,
-      date: date
-    }
+      date: date,
+    };
 
     console.log(deleteGame);
 
     // post request to apiRoutes
     $.post("/api/deleteGame", deleteGame).then(function (data) {
       console.log(data);
-      // if no data returned, then no game to delete
-      if (!data){
-        alert("Game does not exist... please try again.")
-      } else { 
-        $("#myModal2").css("display",function(){
-          return "none"
-        });
-        setTimeOut(function(){alert("Game deleted!");}, 5000);
-      }
-    }); 
-    // reloads the page with new info from server
-    window.location.reload(true);
+      alert(data);
+    });
   });
 });
