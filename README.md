@@ -2,8 +2,8 @@
 
 An MVP based application for a baseball team.  Keep all team members and their family members up-to-date on upcoming, current, and past games.
 
-## Browser
- The Little League Logger Applicaiton is only currently compatible with Chrome.  Some of functionality may not be accessible in other browsers.
+## Platform/Browser
+ * This application is currently only compatible with Chrome.  Some of the features will not operate properly in other browsers.
 
 ## Technology Used
   * Javascript
