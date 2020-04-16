@@ -10,8 +10,6 @@ $(document).ready(function () {
       },
       function (data) {
         if (typeof data === "object") {
-          alert("Login successful!");
-          // console.log(data);
           localStorage.setItem("User", data.name);
 
           window.location.href = "/calendar";
@@ -48,11 +46,8 @@ $(document).ready(function () {
       team: "Jaguars",
     };
 
-    // console.log(newUser);
     $.post("/api/newUser", newUser).then(function (data) {
-      console.log(data);
       if (!data) {
-        // $("#myModal").modal("hide");
         alert("Account already exists");
       } else {
         $("#myModal").modal("hide");

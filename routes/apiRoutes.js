@@ -48,7 +48,6 @@ module.exports = function (app) {
 
             // res.redirect("/calendar");
           } else {
-            console.log("incorrecct");
             res.send(false);
             // res.redirect("/");
           }
@@ -59,15 +58,12 @@ module.exports = function (app) {
 
   app.post("/api/coach", (req, res) => {
     db.User.findAll({}).then(function (User) {
-      console.log(req.session.coach);
       res.send(req.session.coach);
     });
   });
 
   // Register new user post request
   app.post("/api/newUser", (req, res, next) => {
-    // db.User.create(req.body);
-    // console.log("newUser: " + req.body.name);
     db.User.findOne({
       where: {
         name: req.body.name,
@@ -133,10 +129,6 @@ module.exports = function (app) {
   // Get request for all games in db
   app.get("/api/games", (req, res) => {
     db.Game.findAll({}).then(function (data) {
-      // for (i = 0; i < data.length; i++) {
-      //   console.log(data[i].date);
-      // }
-
       res.json(data);
     });
   });
@@ -175,7 +167,6 @@ module.exports = function (app) {
   });
 
   app.post("/api/deleteGame", function (req, res) {
-    console.log(req.body);
     db.Game.findOne({
       where: {
         date: req.body.date,

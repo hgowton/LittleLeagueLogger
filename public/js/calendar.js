@@ -16,10 +16,10 @@ $(document).ready(function () {
   var daysOfTheWeekRy = ["S", "M", "T", "W", "T", "F", "S"];
 
   var d = new Date();
-  var year = d.getFullYear(); // 2016
+  var year = d.getFullYear();
   document.querySelector("#year").innerHTML = year;
-  var thisMonth = d.getMonth(); // 0 - 11
-  var today = d.getDate(); // 1 -31
+  var thisMonth = d.getMonth();
+  var today = d.getDate();
 
   for (var month = 0; month < 12; month++) {
     createCalendar(month);
@@ -54,7 +54,6 @@ $(document).ready(function () {
   }
 
   function createDay(month, counter, order, monthDiv) {
-    //if(order == 8){order = -1}
     var day = document.createElement("div"); //changed to button
     if (month === thisMonth && counter === today) {
       day.setAttribute("class", "to day");
@@ -72,7 +71,6 @@ $(document).ready(function () {
       newMonth = "0" + (month + 1);
     }
     day.setAttribute("id", "2020" + "-" + newMonth + "-" + newDay);
-    // day.setAttribute("value", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
     monthDiv.appendChild(day);
   }
@@ -89,7 +87,6 @@ $(document).ready(function () {
     monthDiv.appendChild(h4);
 
     for (var i = 0; i < 7; i++) {
-      //var order = (i == 0) ? order = 7 : order = i;
       var hday = document.createElement("div");
       hday.setAttribute("class", "day OfWeek");
       hday.setAttribute("style", "order:" + i);
@@ -175,7 +172,6 @@ $(document).ready(function () {
   //Logout Button
   $("#logout").on("click", function () {
     $.post("/logout", {}, (data) => {
-      console.log(data);
       if (!data) {
         window.location.href = "/calendar";
       } else {
@@ -203,8 +199,6 @@ $(document).ready(function () {
 
   // function to add a game when clicked
   $("#addGame").on("click", function (event) {
-    console.log("create game button");
-
     // grabs user input from modal
     var homeInput = $("#homeTeam").val().trim();
     var awayInput = $("#awayTeam").val().trim();
@@ -219,19 +213,14 @@ $(document).ready(function () {
       date: date,
     };
 
-    console.log(newGame);
-
     // post request to apiRoutes
     $.post("/api/newGame", newGame).then(function (data) {
-      console.log(data);
       alert(data);
     });
   });
 
   // function to delete a game when clicked
   $("#deleteGame").on("click", function (event) {
-    console.log("delete game button");
-
     // grabs user input from modal
     var homeInput = $("#homeTeam").val().trim();
     var awayInput = $("#awayTeam").val().trim();
@@ -246,11 +235,8 @@ $(document).ready(function () {
       date: date,
     };
 
-    console.log(deleteGame);
-
     // post request to apiRoutes
     $.post("/api/deleteGame", deleteGame).then(function (data) {
-      console.log(data);
       alert(data);
     });
   });
