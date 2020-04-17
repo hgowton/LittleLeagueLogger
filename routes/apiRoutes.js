@@ -48,7 +48,6 @@ module.exports = function (app) {
 
             // res.redirect("/calendar");
           } else {
-            console.log("incorrecct");
             res.send(false);
             // res.redirect("/");
           }
@@ -59,15 +58,12 @@ module.exports = function (app) {
 
   app.post("/api/coach", (req, res) => {
     db.User.findAll({}).then(function (User) {
-      console.log(req.session.coach);
       res.send(req.session.coach);
     });
   });
 
   // Register new user post request
   app.post("/api/newUser", (req, res, next) => {
-    // db.User.create(req.body);
-    // console.log("newUser: " + req.body.name);
     db.User.findOne({
       where: {
         name: req.body.name,
@@ -133,65 +129,64 @@ module.exports = function (app) {
   // Get request for all games in db
   app.get("/api/games", (req, res) => {
     db.Game.findAll({}).then(function (data) {
-      // for (i = 0; i < data.length; i++) {
-      //   console.log(data[i].date);
-      // }
-
       res.json(data);
     });
   });
 
-  app.post("/api/newGame", function(req, res) {
+  app.post("/api/newGame", function (req, res) {
     console.log(req.body);
-    db.Game.findOne({
-      where: {
-        home_team: req.body.home_team,
-        away_team: req.body.away_team,
-        location: req.body.location,
-        date: req.body.date
-      }
-    }).then(function(Game){
-      if(Game){
-        res.send(false);
-      } else {
-        db.Game.create({
+    if (
+      req.body.home_team === "" ||
+      req.body.away_team === "" ||
+      req.body.location === ""
+    ) {
+      res.send("Please Fill Out All Fields");
+    } else {
+      db.Game.findOne({
+        where: {
           home_team: req.body.home_team,
           away_team: req.body.away_team,
           location: req.body.location,
-          date: req.body.date
-        }).then(function(data) {
-          // if (data) {
-          //   res.redirect("/calendar");
-          // }
+          date: req.body.date,
+        },
+      }).then(function (Game) {
+        if (Game) {
+          res.send("Game Already exists");
+        } else {
+          db.Game.create({
+            home_team: req.body.home_team,
+            away_team: req.body.away_team,
+            location: req.body.location,
+            date: req.body.date,
+          }).then(function (data) {
+            res.send("Game Created!");
+          });
+        }
+      });
+    }
+  });
+
+  app.post("/api/deleteGame", function (req, res) {
+    db.Game.findOne({
+      where: {
+        date: req.body.date,
+      },
+    }).then(function (Game) {
+      console.log(Game);
+      if (!Game) {
+        res.send("Game Doesn't Exist");
+      } else {
+        db.Game.destroy({
+          where: {
+            date: req.body.date,
+          },
+        }).then(function (data) {
+          res.send("Game Deleted");
         });
       }
     });
   });
 
-  app.post("/api/deleteGame", function(req, res) {
-    console.log(req.body);
-    db.Game.findOne({
-      where: {
-        date: req.body.date
-      } 
-    }).then(function(Game){
-      console.log(Game);
-      if(!Game){
-        res.send(false);
-      } else {
-        db.Game.destroy({ 
-          where: {
-            date: req.body.date
-          } 
-        }).then(function(data) {
-          // if (data) {
-          //   res.redirect("/calendar");
-          // }
-        });
-      }
-    })
-  });
-  
   ///////////////////////////////////////////////
   //EXAMPLES/////////////////////////////////////
   ///////////////////////////////////////////////

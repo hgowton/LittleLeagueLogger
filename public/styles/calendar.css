@@ -312,6 +312,7 @@ script {
   padding: 20px;
   border: 1px solid #888;
   width: 100%;
+  max-width: 400px;
   font-size: 28px;
 }
 
@@ -326,7 +327,8 @@ script {
 
 .modal-body {
   position: relative;
-  flex: 1 1 auto;
+  /* flex: 1 1 1 auto; */
+  flex-direction: column;
   padding: 1rem;
 }
 
@@ -346,15 +348,18 @@ script {
 }
 
 label {
-  font-size: 24px;
+  font-size: 20px;
   margin: 2% 2%;
 }
 
 input {
   font-size: 20px;
-  margin: 2% 0;
+  margin-left: auto;
 }
 
+.form-group {
+  margin-top: 10px;
+}
 .btn-primary {
   margin: 2% 3%;
   font-size: 20px;

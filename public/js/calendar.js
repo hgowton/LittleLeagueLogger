@@ -16,10 +16,10 @@ $(document).ready(function () {
   var daysOfTheWeekRy = ["S", "M", "T", "W", "T", "F", "S"];
 
   var d = new Date();
-  var year = d.getFullYear(); // 2016
+  var year = d.getFullYear();
   document.querySelector("#year").innerHTML = year;
-  var thisMonth = d.getMonth(); // 0 - 11
-  var today = d.getDate(); // 1 -31
+  var thisMonth = d.getMonth();
+  var today = d.getDate();
 
   for (var month = 0; month < 12; month++) {
     createCalendar(month);
@@ -54,7 +54,6 @@ $(document).ready(function () {
   }
 
   function createDay(month, counter, order, monthDiv) {
-    //if(order == 8){order = -1}
     var day = document.createElement("div"); //changed to button
     if (month === thisMonth && counter === today) {
       day.setAttribute("class", "to day");
@@ -72,10 +71,8 @@ $(document).ready(function () {
       newMonth = "0" + (month + 1);
     }
     day.setAttribute("id", "2020" + "-" + newMonth + "-" + newDay);
-    // day.setAttribute("value", "2020" + "-" + newMonth + "-" + newDay);
     day.innerHTML = counter;
     monthDiv.appendChild(day);
-
   }
 
   function createMonthHeader(month) {
@@ -90,7 +87,6 @@ $(document).ready(function () {
     monthDiv.appendChild(h4);
 
     for (var i = 0; i < 7; i++) {
-      //var order = (i == 0) ? order = 7 : order = i;
       var hday = document.createElement("div");
       hday.setAttribute("class", "day OfWeek");
       hday.setAttribute("style", "order:" + i);
@@ -98,8 +94,7 @@ $(document).ready(function () {
       monthDiv.appendChild(hday);
     }
 
-    return monthDiv;		
-
+    return monthDiv;
   }
 
   function daysInMonth(year, month) {
@@ -177,7 +172,6 @@ $(document).ready(function () {
   //Logout Button
   $("#logout").on("click", function () {
     $.post("/logout", {}, (data) => {
-      console.log(data);
       if (!data) {
         window.location.href = "/calendar";
       } else {
@@ -187,28 +181,24 @@ $(document).ready(function () {
       }
     });
   });
-  
+
   // Modal Code //
   // Add Game shows modal
   $("#add").on("click", function () {
-    $("#myModal2").css("display", function(){
-      return "block"
+    $("#myModal2").css("display", function () {
+      return "block";
     });
   });
 
   // closes modal
-  $(".close").on("click", function(){
-    $("#myModal2").css("display", function(){
-      return "none"
+  $(".close").on("click", function () {
+    $("#myModal2").css("display", function () {
+      return "none";
     });
   });
 
   // function to add a game when clicked
-  $("#addGame").on("click", function (event){
-    event.preventDefault();
-
-    console.log("create game button");
-
+  $("#addGame").on("click", function (event) {
     // grabs user input from modal
     var homeInput = $("#homeTeam").val().trim();
     var awayInput = $("#awayTeam").val().trim();
@@ -216,35 +206,21 @@ $(document).ready(function () {
     var date = $("#date").val();
 
     // initializes var with user input
-    var newGame ={
+    var newGame = {
       home_team: homeInput,
-      away_team: awayInput, 
+      away_team: awayInput,
       location: location,
-      date: date
-    }
-
-    console.log(newGame);
+      date: date,
+    };
 
     // post request to apiRoutes
-    $.post("/api/newGame", newGame).then(function(data) {
-      console.log(data);
-      // if game doesnt exist, then create the game
-      if (!data){
-        alert("New game added!");
-      } 
-      alert("Game already exists!");
-      
-    }); 
-    // reloads the window with new info from server
-    window.location.reload(true);
+    $.post("/api/newGame", newGame).then(function (data) {
+      alert(data);
+    });
   });
 
   // function to delete a game when clicked
-  $("#deleteGame").on("click", function (event){
-    event.preventDefault();
-
-    console.log("delete game button");
-
+  $("#deleteGame").on("click", function (event) {
     // grabs user input from modal
     var homeInput = $("#homeTeam").val().trim();
     var awayInput = $("#awayTeam").val().trim();
@@ -252,29 +228,16 @@ $(document).ready(function () {
     var date = $("#date").val();
 
     // initializes a var with user input
-    var deleteGame ={
+    var deleteGame = {
       home_team: homeInput,
-      away_team: awayInput, 
+      away_team: awayInput,
       location: location,
-      date: date
-    }
-
-    console.log(deleteGame);
+      date: date,
+    };
 
     // post request to apiRoutes
     $.post("/api/deleteGame", deleteGame).then(function (data) {
-      console.log(data);
-      // if no data returned, then no game to delete
-      if (!data){
-        alert("Game does not exist... please try again.")
-      } else { 
-        $("#myModal2").css("display",function(){
-          return "none"
-        });
-        setTimeOut(function(){alert("Game deleted!");}, 5000);
-      }
-    }); 
-    // reloads the page with new info from server
-    window.location.reload(true);
+      alert(data);
+    });
   });
 });
