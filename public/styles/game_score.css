@@ -138,3 +138,9 @@ span.comments {
   text-align: center;
   margin-top: 5px;
 }
+
+#alert {
+  display: none;
+  margin-bottom: 0;
+  margin: auto;
+}
