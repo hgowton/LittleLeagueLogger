@@ -1,3 +1,9 @@
+body {
+  background: url("https://previews.123rf.com/images/jamiefarrant/jamiefarrant1508/jamiefarrant150800001/43355394-lush-green-grass-background-that-will-tile-endlessly.jpg");
+  background-repeat: repeat;
+  color: #070707;
+}
+
 .display-none {
   display: none;
 }

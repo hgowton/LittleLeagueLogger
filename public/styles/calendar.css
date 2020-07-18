@@ -1,3 +1,16 @@
+body {
+  background: url("https://previews.123rf.com/images/jamiefarrant/jamiefarrant1508/jamiefarrant150800001/43355394-lush-green-grass-background-that-will-tile-endlessly.jpg");
+  background-repeat: repeat;
+  color: #070707;
+}
+
+body,
+body * {
+  display: flex;
+  justify-content: center;
+}
+
+
 html {
   font-size: 80%;
 }
@@ -20,6 +33,17 @@ html {
 .calendar,
 section {
   max-width: 75rem;
+  background: #efefef;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.legend {
+  line-height: 3rem;
+  border-radius: 13px;
+  box-shadow: 0 0 8px rgba(7,7,7,.2);
+  text-shadow: 0 0 5px rgba(7,7,7,.1);
+
 }
 
 .day {
@@ -40,14 +64,15 @@ section {
 .to.day {
   color: white;
   background: #f09;
-  border-radius: 50%;
+  border-radius: 50%; 
 }
+
 .gameDay {
   color: white;
   background: rgb(0, 217, 255);
-  border-radius: 50%;
+  border-radius: 50%; 
   width: 1.5em;
-  height: 1.5em;
+  height: 1.5em; 
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -58,7 +83,7 @@ section {
   background: rgb(255, 157, 0);
   border-radius: 50%;
   width: 1.5em;
-  height: 1.5em;
+  height: 1.5em; 
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -67,8 +92,8 @@ section {
 .inProgress {
   color: white;
   background: rgb(0, 255, 0);
-  border-radius: 50%;
-  width: 1.5em;
+  border-radius: 50%; 
+  width: 1.5em; 
   height: 1.5em;
   align-items: center;
   justify-content: center;
@@ -104,12 +129,12 @@ h4 {
   margin: 0 8px;
 }
 
-/* section {
-  display: none;
-}
+
 #welcomeDiv {
-  display: none;
-} */
+  line-height: 1.5rem;
+  font-size: 25px;
+  font-weight: bold;
+} 
 
 h1#year {
   font-size: 2em;
@@ -136,11 +161,6 @@ h1#year {
 
 /* FLEXBOX styles*/
 
-body,
-body * {
-  display: flex;
-  justify-content: center;
-}
 
 h4 {
   justify-content: center;
@@ -160,6 +180,11 @@ h1 {
 section {
   flex-direction: column;
   align-self: center;
+}
+
+.calendar {
+  box-shadow: 0 0 15px rgba(7,7,7,.4);
+  border-radius: 8px;
 }
 
 .month {
